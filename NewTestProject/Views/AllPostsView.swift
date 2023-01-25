@@ -3,11 +3,11 @@
 //  NewTestProject
 //
 //  Created by Marilyn Thai on 1/24/23.
-//
+// Marilyn
 
 import SwiftUI
 
-struct HomeView: View {
+struct AllPostsView: View {
     @EnvironmentObject var dataManager:DataManager
     @State private var showAdd = false
     
@@ -24,14 +24,15 @@ struct HomeView: View {
                 Image(systemName:"plus")
             }))
             .sheet(isPresented: $showAdd){
-                NewPostView()
+                CreatePostView()
             }
         }
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct AllPostsView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        AllPostsView()
+            .environmentObject(DataManager())
     }
 }

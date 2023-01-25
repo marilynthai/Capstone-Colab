@@ -3,26 +3,18 @@
 //  NewTestProject
 //
 //  Created by Marilyn Thai on 1/24/23.
-//
+// Marilyn
 
 import SwiftUI
 import Firebase
 
-struct ContentView: View {
+struct CreateAUserView: View {
     @State private var email=""
     @State private var password=""
     @State private var userIsLoggedIn = false
     
     var body: some View {
-        if userIsLoggedIn {
-            HomeView()
-        } else {
-            content
-        }
-    }
-    
-    var content: some View {
-        VStack {
+       VStack {
             Text("Welcome")
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
@@ -74,9 +66,9 @@ struct ContentView: View {
         }
     }
     
-    struct ContentView_Previews: PreviewProvider {
+    struct CreateAUserView_Previews: PreviewProvider {
         static var previews: some View {
-            ContentView()
+            CreateAUserView()
             
         }
     }

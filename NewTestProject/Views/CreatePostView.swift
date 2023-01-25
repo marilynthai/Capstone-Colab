@@ -3,11 +3,11 @@
 //  NewTestProject
 //
 //  Created by Marilyn Thai on 1/25/23.
-//
+// Marilyn
 
 import SwiftUI
 
-struct NewPostView: View {
+struct CreatePostView: View {
     @EnvironmentObject var dataManager:DataManager
     @State private var newPostName = ""
     @State private var newPostDescription = ""
@@ -26,8 +26,8 @@ struct NewPostView: View {
     }
 }
 
-struct NewPostView_Previews: PreviewProvider {
+struct CreatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        NewPostView()
+        CreatePostView()
     }
 }
