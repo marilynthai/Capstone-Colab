@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var dataManager:DataManager
     @State private var showAdd = false
     
     
