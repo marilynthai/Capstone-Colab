@@ -15,8 +15,6 @@ struct NewTestProjectApp: App {
     init() {
         FirebaseApp.configure()
     }
-    //Marilyn's Comment
-    // comment from nina
     var body: some Scene {
         WindowGroup {
             ContentView()
