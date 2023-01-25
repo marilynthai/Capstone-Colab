@@ -14,41 +14,56 @@ struct CreateAUserView: View {
     @State private var userIsLoggedIn = false
     
     var body: some View {
-       VStack {
-            Text("Welcome")
-                .font(.largeTitle)
-                .multilineTextAlignment(.center)
-            Spacer()
-            TextField("Email", text: $email)
-                .padding(.all)
-                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-            TextField("Password", text: $password)
-                .padding(.all)
-                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-            
-            Button("Sign Up") {
-                register()
-            }
-            .padding(.all)
-            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-            
-            
-            
-            Button("Login") {
-                login()
-            }
-            .padding()
-            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-            .onAppear(){
-                Auth.auth().addStateDidChangeListener{auth,user in
-                    if user != nil {
-                        userIsLoggedIn.toggle()
+        NavigationView{
+            ZStack {
+                Color.blue
+                    .opacity(0.25)
+                    .ignoresSafeArea()
+                VStack{
+                    Text("Create A New User")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
+                    
+                    TextField("Email", text: $email)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
+                    
+                    TextField("Password", text: $password)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
+                    
+                    Button("Sign Up") {
+                        register()
                     }
-            }
-            
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    
+                    
+                    Button("Login") {
+                        login()
+                    }
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .onAppear(){
+                        Auth.auth().addStateDidChangeListener{auth,user in
+                            if user != nil {
+                                userIsLoggedIn.toggle()
+                            }
+                        }
+                    }
+                }
+                 .padding()
+             }
         }
-        .padding()
-    }
     }
     
     func register() {
