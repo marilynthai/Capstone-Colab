@@ -10,21 +10,48 @@ import SwiftUI
 struct AllPostsView: View {
     @EnvironmentObject var dataManager:DataManager
     @State private var showAdd = false
+    @State private var search = ""
+
     
     
     var body: some View {
         NavigationView {
-            List(dataManager.posts, id:\.id) { post in
-                Text(post.name)
-            }
-            .navigationTitle("Posts")
-            .navigationBarItems(trailing:Button(action:{
-                showAdd.toggle()
-            },label: {
-                Image(systemName:"plus")
-            }))
-            .sheet(isPresented: $showAdd){
-                CreatePostView()
+            
+            VStack{
+                TextField("Search",text:$search)
+                    .padding()
+                    .padding()
+                    .frame(width:300, height:50)
+                    .background(Color.white.opacity(0.75))
+                    .cornerRadius(10)
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                
+                List(dataManager.posts, id:\.id) { post in
+                    HStack {
+                        Image(systemName:"photo.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 70)
+                            .cornerRadius(4)
+                        
+                        VStack(alignment: .leading){
+                            Text(post.name)
+                                .fontWeight(.bold)
+                            
+                            Text(post.description)
+                                .font(.subheadline)
+                        }
+                    }
+                }
+                .navigationTitle("Posts")
+                //            .navigationBarItems(trailing:Button(action:{
+                //                showAdd.toggle()
+                //            },label: {
+                //                Image(systemName:"plus")
+                //            }))
+                //            .sheet(isPresented: $showAdd){
+                //                CreatePostView()
+                //            }
             }
         }
     }

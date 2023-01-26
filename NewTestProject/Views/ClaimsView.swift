@@ -9,7 +9,27 @@ import SwiftUI
 
 struct ClaimsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                HStack {
+                    Image(systemName:"photo.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 70)
+                        .cornerRadius(4)
+                    
+                    VStack(alignment: .leading){
+                        Text("Post Title")
+                            .fontWeight(.bold)
+                        
+                        Text("Claimed")
+                            .font(.subheadline)
+                    }
+                }
+            }
+            .navigationTitle("My Claims")
+
+        }
     }
 }
 
