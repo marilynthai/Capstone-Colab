@@ -30,6 +30,7 @@ class DataManager:ObservableObject {
                     let id = data["id"] as? String ?? ""
                     let name = data["name"] as? String ?? ""
                     let description = data["description"] as? String ?? ""
+                    let contactEmail = data["Contact Email"] as? String ?? ""
                     let post = Post(id: id, description: description, name: name)
                     self.posts.append(post)
                 }

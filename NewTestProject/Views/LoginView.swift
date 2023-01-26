@@ -14,6 +14,7 @@ struct LoginView: View {
     @State private var password = ""
     @State private var wrongEmail = 0
     @State private var wrongPassword = 0
+    @State private var wrongUsername = 0
     @State private var showingLoginScreen = false
     
     var body: some View {
@@ -34,6 +35,9 @@ struct LoginView: View {
                         .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
                         .border(.red,width: CGFloat(wrongEmail))
+                        .border(.red,width: CGFloat(wrongUsername))
+                    //label to limit front end
+
                     
                     SecureField("Password", text: $password)
                         .padding()

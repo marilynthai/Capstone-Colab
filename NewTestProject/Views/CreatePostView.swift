@@ -50,8 +50,8 @@ struct CreatePostView: View {
                     }
                     
                     VStack(alignment: .leading) {
-                        Text("Description")
-                        TextField("Description",text: $newPostDescription)
+                        Text("Contact Email")
+                        TextField("Description",text: $newContactEmail)
                                                 .padding()
                                                 .frame(width:300, height:50)
                                                 .background(Color.white.opacity(0.75))

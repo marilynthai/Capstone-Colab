@@ -44,14 +44,15 @@ struct AllPostsView: View {
                     }
                 }
                 .navigationTitle("Posts")
-                //            .navigationBarItems(trailing:Button(action:{
-                //                showAdd.toggle()
-                //            },label: {
-                //                Image(systemName:"plus")
-                //            }))
-                //            .sheet(isPresented: $showAdd){
-                //                CreatePostView()
-                //            }
+//                 adding a post with + button
+                            .navigationBarItems(trailing:Button(action:{
+                                showAdd.toggle()
+                            },label: {
+                                Image(systemName:"plus")
+                            }))
+                            .sheet(isPresented: $showAdd){
+                                CreatePostView()
+                            }
             }
         }
     }
