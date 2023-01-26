@@ -22,31 +22,40 @@ struct SinglePostView: View {
                     .scaledToFit()
                     .frame(height: 250)
                 
+                VStack(alignment: .leading){
+                    
+                    Text("Description")
+                        .fontWeight(.semibold)
+                    
+                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ullamcorper aliquam gravida. Curabitur convallis orci vitae augue volutpat, id venenatis mauris cursus. Ut ac dictum leo. Vestibulum tristique egestas purus, id ultricies dui ultricies eget. Mauris lobortis bibendum lorem malesuada ultrices. Donec viverra dui a diam pretium, sit amet dapibus.")
+                        .font(.body)
+                }
                 
-                Text("Description")
-                    .fontWeight(.semibold)
+                HStack {
+                    Text("Type of Pickup")
+                        .fontWeight(.semibold)
+                    
+                    Text("In-person")
+                        .font(.body)
+                }
                 
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ullamcorper aliquam gravida. Curabitur convallis orci vitae augue volutpat, id venenatis mauris cursus. Ut ac dictum leo. Vestibulum tristique egestas purus, id ultricies dui ultricies eget. Mauris lobortis bibendum lorem malesuada ultrices. Donec viverra dui a diam pretium, sit amet dapibus.")
-                    .font(.body)
                 
-                Text("Type of Pickup")
-                    .fontWeight(.semibold)
+                HStack {
+                    Text("Time of Pickup")
+                        .fontWeight(.semibold)
+                    
+                    Text("☀️ Morning")
+                        .font(.body)
+                }
                 
-                Text("In-person")
-                    .font(.body)
-                
-                Text("Time of Pickup")
-                    .fontWeight(.semibold)
-                
-                Text("☀️ Morning")
-                    .font(.body)
-                
-                Text("Contact Information")
-                    .fontWeight(.semibold)
-                
-                Text("ninatuyentran@gmail.com")
-                    .font(.body)
-
+                HStack {
+                    Text("Contact")
+                        .fontWeight(.semibold)
+                    
+                    Text("ninatuyentran@gmail.com")
+                        .font(.subheadline)
+                    
+                }
                 
             }
         }
@@ -57,4 +66,6 @@ struct SinglePostView: View {
             SinglePostView()
         }
     }
+    
+    
 }
