@@ -8,46 +8,101 @@
 import SwiftUI
 
 struct EditPostView: View {
-    @EnvironmentObject var dataManager:DataManager
-    @State private var updatedPostName = ""
-    @State private var updatedDescription = ""
+    @State private var changePostName = ""
+    @State private var changePostDescription = ""
+    @State private var changeContactEmail = ""
+    @State private var changeCategory = ""
     
     var body: some View {
-        
-        VStack {
-            Text("Edit Post")
-                .font(.largeTitle)
-                .bold()
+        NavigationView {
+            ZStack{
+                VStack {
+                    Button {
+                    } label: {
+                        Text("Change Image")
+                    }
+                    .foregroundColor(.black)
+                    .frame(width:200, height:40)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Name")
+                        TextField("Post Name",text: $changePostName)
+                        //should populate with original post data
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                            .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("Description")
+                        TextField("Description",text: $changePostDescription)
+                        //should populate with original post data
+                                                .padding()
+                                                .frame(width:300, height:50)
+                                                .background(Color.white.opacity(0.75))
+                                                .cornerRadius(10)
+                                                .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("Contact Email")
+                        TextField("Contact Email",text: $changeContactEmail)
+                        //should populate with original post data
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                            .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("Category")
+                            .multilineTextAlignment(.leading)
+                        TextField("Category",text: $changeCategory)
+                        //should populate with original post data
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                            .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+
+                    }
+
+                    
+                    Button {
+                        // update backend post func
+                    } label: {
+                        Text("Save Post")
+                    }
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
+                    
+                    Button {
+                        // delete backend post func
+                    } label: {
+                        Text("Delete Post")
+                    }
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
+                    
+                }
                 .padding()
-            List {
-                
-                Image(systemName: "photo.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 250)
-                Button("Change Image"){}
-                
-                Text("Title")
-                    .fontWeight(.semibold)
-                TextField("Post Name",text: $updatedPostName)
-                
-                Text("Description")
-                    .fontWeight(.semibold)
-                TextField("Description",text: $updatedDescription)
-                
-                Text("Type of Pickup")
-                    .fontWeight(.semibold)
-                TextField("Type of Pickup",text: $updatedDescription)
-                
-                Text("Category")
-                    .fontWeight(.semibold)
-                TextField("Category",text: $updatedDescription)
             }
-            Button {
-                dataManager.editPost(name: updatedPostName, description: updatedDescription)
-            } label: {
-                Text("Save")
-            }
+            .navigationTitle("Create Post")
         }
     }
     
