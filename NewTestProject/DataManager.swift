@@ -46,4 +46,15 @@ class DataManager:ObservableObject {
         }
         
     }
+    
+    func editPost(name: String,description:String) {
+        let db = Firestore.firestore()
+        let ref = db.collection("Posts").document(name)
+        ref.setData(["name": name, "description" :description, "id":12]){error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+        
+    }
 }
