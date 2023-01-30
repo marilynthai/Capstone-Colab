@@ -180,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				309A77842981C03F00B0145F /* HomeView.swift */,
-				6F3ECD8F2988477A00AB7F79 /* TestContentView.swift */,
 				309A77802981BF3F00B0145F /* LoginView.swift */,
 				309A773E29809DFB00B0145F /* CreateAUserView.swift */,
 				309A77762980B4A200B0145F /* AllPostsView.swift */,
@@ -189,6 +188,7 @@
 				309A777C29819F0200B0145F /* CreatePostView.swift */,
 				309A77862981C08C00B0145F /* SinglePostView.swift */,
 				309A77882981C0A300B0145F /* EditPostView.swift */,
+				6F3ECD8F2988477A00AB7F79 /* TestContentView.swift */,
 				3097105C298832AD00897010 /* Models */,
 			);
 			path = Views;
