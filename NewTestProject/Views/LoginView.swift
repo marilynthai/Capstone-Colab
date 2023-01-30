@@ -19,7 +19,6 @@ struct LoginView: View {
     @State private var id = ""
 
     
-    
     var body: some View {
         NavigationView {
             ZStack {
