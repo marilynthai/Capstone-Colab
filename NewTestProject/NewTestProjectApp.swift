@@ -12,13 +12,15 @@ import Firebase
 @main
 struct NewTestProjectApp: App {
     @StateObject var dataManager = DataManager()
+    @StateObject var sessionManager = SessionStore()
+
     init() {
         FirebaseApp.configure()
     }
     var body: some Scene {
         WindowGroup {
-            TestContentView()
-//                .environmentObject(DataManager())
+            HomeView()
+                .environmentObject(SessionStore())
             
         }
     }

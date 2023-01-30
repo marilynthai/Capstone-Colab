@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		300433272987724200B7D527 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300433262987724200B7D527 /* User.swift */; };
 		3097105F2988520A00897010 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097105E2988520A00897010 /* LoginManager.swift */; };
+		309710612988713E00897010 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309710602988713E00897010 /* SessionManager.swift */; };
 		309A773D29809DFB00B0145F /* NewTestProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A773C29809DFB00B0145F /* NewTestProjectApp.swift */; };
 		309A773F29809DFB00B0145F /* CreateAUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A773E29809DFB00B0145F /* CreateAUserView.swift */; };
 		309A774129809DFD00B0145F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 309A774029809DFD00B0145F /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		300433262987724200B7D527 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3097105E2988520A00897010 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		309710602988713E00897010 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		309A773929809DFB00B0145F /* NewTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309A773C29809DFB00B0145F /* NewTestProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTestProjectApp.swift; sourceTree = "<group>"; };
 		309A773E29809DFB00B0145F /* CreateAUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAUserView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				309A777A2980B5C600B0145F /* DataManager.swift */,
 				3097105E2988520A00897010 /* LoginManager.swift */,
+				309710602988713E00897010 /* SessionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				309A77892981C0A300B0145F /* EditPostView.swift in Sources */,
 				309A77872981C08C00B0145F /* SinglePostView.swift in Sources */,
 				309A77792980B4E100B0145F /* Post.swift in Sources */,
+				309710612988713E00897010 /* SessionManager.swift in Sources */,
 				309A778C2981C12C00B0145F /* ClaimsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@ import Firebase
 
 struct AllPostsView: View {
     @EnvironmentObject var dataManager:DataManager
+    @StateObject var loginManager = LoginManager()
     @State private var showAdd = false
     @State private var search = ""
 
@@ -61,12 +62,8 @@ struct AllPostsView: View {
                                 CreatePostView()
                             }
                 Button {
-                let firebaseAuth = Auth.auth()
-                   do {
-                     try firebaseAuth.signOut()
-                   } catch let signOutError as NSError {
-                     print("Error signing out: %@", signOutError)
-                   }
+                    loginManager.logout()
+                    // how do we get back to home page
                 } label: {
                     Text("Log Out")
                 }

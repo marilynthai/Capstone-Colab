@@ -8,7 +8,7 @@
 import SwiftUI
 import Firebase
 
-class LoginManager : ObservableObject {
+class TestLoginManager : ObservableObject {
     @Published var isLoggedIn = false
     @Published var userID = ""
     
@@ -33,7 +33,7 @@ class LoginManager : ObservableObject {
 
 //Home View
     struct TestContentView : View {
-        @StateObject var loginManager = LoginManager()
+        @StateObject var loginManager = TestLoginManager()
         @EnvironmentObject var dataManager:DataManager
         
         var body: some View {
@@ -50,7 +50,7 @@ class LoginManager : ObservableObject {
     }
 //Login
     struct TestLoginView : View {
-        @ObservedObject var loginManager : LoginManager
+        @ObservedObject var loginManager : TestLoginManager
         @EnvironmentObject var dataManager:DataManager
         @State private var email = ""
         @State private var password = ""

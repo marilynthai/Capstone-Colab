@@ -10,6 +10,10 @@ import Firebase
 
 struct LoginView: View {
     @EnvironmentObject var dataManager:DataManager
+    @StateObject var loginManager = LoginManager()
+    @EnvironmentObject var session: SessionStore
+
+
     @State private var email = ""
     @State private var password = ""
     @State private var wrongEmail = 0
@@ -42,7 +46,6 @@ struct LoginView: View {
                         .disableAutocorrection(true)
                     //label to limit front end
 
-                    
                     SecureField("Password", text: $password)
                         .padding()
                         .frame(width:300, height:50)
@@ -54,17 +57,19 @@ struct LoginView: View {
                     
                     
                     Button("Login") {
-                        login()
+                        loginManager.login(email: email, password: password)
                     }
                     .foregroundColor(.black)
                     .frame(width:300, height:50)
                     .background(Color.white)
                     .cornerRadius(10)
                     
-                    NavigationLink(destination: Text("You have successfully logged in!"), isActive: $showingLoginScreen) {
-                        EmptyView()
+                    NavigationLink(destination: CreateAUserView()) {
+                        Text("Don't have an account? Sign up here")
                     }
+                    
                 }
+        
             }
             .navigationBarHidden(true)
         }
