@@ -14,20 +14,24 @@ struct MyPostView: View {
     var body: some View {
         NavigationView {
             List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                Image(systemName:"photo.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 70)
-                    .cornerRadius(4)
-                
-                VStack(alignment: .leading){
-                    Text("Post title")
-                        .fontWeight(.bold)
-
-                    Text("Secondary test")
-                        .font(.subheadline)
+                NavigationLink {
+                    SinglePostView()
+                } label:{
+                    Image(systemName:"photo.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 70)
+                        .cornerRadius(4)
+                    
+                    VStack(alignment: .leading){
+                        Text("Post title")
+                            .fontWeight(.bold)
+                        
+                        Text("Secondary test")
+                            .font(.subheadline)
+                    }
                 }
-        }
+            }
             .navigationTitle("My Posts")
 
         }

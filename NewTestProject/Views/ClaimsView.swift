@@ -11,19 +11,23 @@ struct ClaimsView: View {
     var body: some View {
         NavigationView {
             List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                HStack {
-                    Image(systemName:"photo.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 70)
-                        .cornerRadius(4)
-                    
-                    VStack(alignment: .leading){
-                        Text("Post Title")
-                            .fontWeight(.bold)
+                NavigationLink {
+                    SinglePostView()
+                } label:{
+                    HStack {
+                        Image(systemName:"photo.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 70)
+                            .cornerRadius(4)
                         
-                        Text("Claimed")
-                            .font(.subheadline)
+                        VStack(alignment: .leading){
+                            Text("Post Title")
+                                .fontWeight(.bold)
+                            
+                            Text("Claimed")
+                                .font(.subheadline)
+                        }
                     }
                 }
             }
