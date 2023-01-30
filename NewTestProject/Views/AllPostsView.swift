@@ -27,7 +27,10 @@ struct AllPostsView: View {
                     .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                 
                 List(dataManager.posts, id:\.id) { post in
-                    HStack {
+                    NavigationLink {
+                        SinglePostView()
+                    } label: {
+                        HStack {
                         Image(systemName:"photo.fill")
                             .resizable()
                             .scaledToFit()
@@ -41,8 +44,11 @@ struct AllPostsView: View {
                             Text(post.description)
                                 .font(.subheadline)
                         }
+                        }
                     }
+                        
                 }
+                    
                 .navigationTitle("Posts")
 //                 adding a post with + button
                             .navigationBarItems(trailing:Button(action:{
