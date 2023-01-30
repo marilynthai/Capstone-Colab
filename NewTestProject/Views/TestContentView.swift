@@ -10,6 +10,7 @@ import Firebase
 
 class LoginManager : ObservableObject {
     @Published var isLoggedIn = false
+    @Published var userID = ""
     
     func login(email:String, password:String) {
         Auth.auth().signIn(withEmail: email, password: password) {result , error in
@@ -21,6 +22,9 @@ class LoginManager : ObservableObject {
                         self.isLoggedIn = true
                     }
                 }
+                guard let userID = Auth.auth().currentUser?.uid else { return }
+                print(userID)
+                
             }
         }
     }
