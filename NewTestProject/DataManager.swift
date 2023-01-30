@@ -9,10 +9,48 @@ import SwiftUI
 import Firebase
 
 class DataManager:ObservableObject {
+    //all views with @Published variables will be changed when they change
     @Published var posts: [Post] = []
+    @Published var users: [User] = []
+    
     
     init() {
         fetchPosts()
+        fetchUsers()
+    }
+    
+    func fetchUsers() {
+        users.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection("Users")
+        ref.getDocuments { info, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let info = info {
+                for document in info.documents {
+                    let data = document.data()
+                    let id = data["id"] as? String ?? ""
+                    let name = data["name"] as? String ?? ""
+                    let email  = data["email"] as? String ?? ""
+                    let user = User(id: id, email: email, name: name)
+                    self.users.append(user)
+                }
+            }
+        }
+    }
+    
+    func addUser(name: String,email:String) {
+        let db = Firestore.firestore()
+        let ref = db.collection("Users").document()
+        let docId = ref.documentID
+        ref.setData(["id":docId,"name": name, "email" :email]){error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+        
     }
     
     func fetchPosts() {
@@ -31,31 +69,23 @@ class DataManager:ObservableObject {
                     let name = data["name"] as? String ?? ""
                     let description = data["description"] as? String ?? ""
                     let contactEmail = data["Contact Email"] as? String ?? ""
-                    let post = Post(id: id, description: description, name: name)
+                    let category = data["category"] as? String ?? ""
+                    let post = Post(id: id, description: description, name: name, contact_email: contactEmail, category: category)
                     self.posts.append(post)
                 }
             }
         }
     }
-    func addPost(name: String,description:String) {
+    func addPost(name: String,description:String,contactEmail:String, category:String) {
         let db = Firestore.firestore()
-        let ref = db.collection("Posts").document(name)
-        ref.setData(["name": name, "description" :description, "id":12]){error in
+        let ref = db.collection("Posts").document()
+        let docId = ref.documentID
+        ref.setData(["id":docId,"name": name, "description" :description,"contact email":contactEmail, "category": category]){error in
             if error != nil {
-                print(error!.localizedDescription)
+                print("could not add post")
             }
         }
         
     }
     
-    func editPost(name: String,description:String) {
-        let db = Firestore.firestore()
-        let ref = db.collection("Posts").document(name)
-        ref.setData(["name": name, "description" :description, "id":12]){error in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-        }
-        
-    }
 }

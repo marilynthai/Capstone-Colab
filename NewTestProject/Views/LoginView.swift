@@ -9,13 +9,16 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
-    
+    @EnvironmentObject var dataManager:DataManager
     @State private var email = ""
     @State private var password = ""
     @State private var wrongEmail = 0
     @State private var wrongPassword = 0
     @State private var wrongUsername = 0
     @State private var showingLoginScreen = false
+    @State private var id = ""
+
+    
     
     var body: some View {
         NavigationView {
@@ -36,6 +39,8 @@ struct LoginView: View {
                         .cornerRadius(10)
                         .border(.red,width: CGFloat(wrongEmail))
                         .border(.red,width: CGFloat(wrongUsername))
+                        .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
                     //label to limit front end
 
                     
@@ -45,6 +50,8 @@ struct LoginView: View {
                         .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
                         .border(.red,width: CGFloat(wrongPassword))
+                        .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
                     
                     
                     Button("Login") {
@@ -85,10 +92,26 @@ struct LoginView: View {
             } else {
                 wrongPassword = 0
                 showingLoginScreen = true
+//                grabUserInformation()
+                
                 
             }
         }
     }
+    
+//    attempting to grab user id and set to a global variable
+//    func grabUserInformation() {
+//        dataManager.fetchUsers()
+//        let users = dataManager.users
+//        for user in users {
+//            if user.email != email {
+//                print("No user found with that email, cannot assign id state")
+//            } else {
+//                id = user.id
+//                print(id)
+//            }
+//        }
+//    }
         
         struct LoginView_Previews: PreviewProvider {
             static var previews: some View {
@@ -97,4 +120,5 @@ struct LoginView: View {
             
         }
     }
+
 

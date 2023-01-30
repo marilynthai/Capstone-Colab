@@ -12,7 +12,7 @@ struct CreatePostView: View {
     @State private var newPostName = ""
     @State private var newPostDescription = ""
     @State private var newContactEmail = ""
-    @State private var Category = ""
+    @State private var category = ""
     
     var body: some View {
         NavigationView{
@@ -51,7 +51,7 @@ struct CreatePostView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Contact Email")
-                        TextField("Description",text: $newContactEmail)
+                        TextField("Contact Email",text: $newContactEmail)
                                                 .padding()
                                                 .frame(width:300, height:50)
                                                 .background(Color.white.opacity(0.75))
@@ -61,7 +61,7 @@ struct CreatePostView: View {
                     VStack(alignment: .leading) {
                         Text("Category")
                             .multilineTextAlignment(.leading)
-                        TextField("Category",text: $Category)
+                        TextField("Category",text: $category)
                             .padding()
                             .frame(width:300, height:50)
                             .background(Color.white.opacity(0.75))
@@ -72,7 +72,7 @@ struct CreatePostView: View {
 
                     
                     Button {
-                        dataManager.addPost(name: newPostName,description: newPostDescription)
+                        dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: newContactEmail,category: category)
                     } label: {
                         Text("Save Post")
                     }
@@ -93,6 +93,7 @@ struct CreatePostView: View {
     struct CreatePostView_Previews: PreviewProvider {
         static var previews: some View {
             CreatePostView()
+                .environmentObject(DataManager())
         }
     }
 }

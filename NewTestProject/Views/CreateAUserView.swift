@@ -9,8 +9,11 @@ import SwiftUI
 import Firebase
 
 struct CreateAUserView: View {
+    @EnvironmentObject var dataManager:DataManager
     @State private var email=""
     @State private var password=""
+    @State private var firstName=""
+    @State private var lastName=""
     @State private var userIsLoggedIn = false
     @State private var createdUser = false
 
@@ -24,12 +27,32 @@ struct CreateAUserView: View {
                         .bold()
                         .padding()
                     
+                    TextField("First Name", text: $firstName)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
+                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        .textInputAutocapitalization(.never)
+
+                    
+                    TextField("Last Name", text: $lastName)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
+                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        .textInputAutocapitalization(.never)
+
+                    
                     TextField("Email", text: $email)
                         .padding()
                         .frame(width:300, height:50)
                         .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        .textInputAutocapitalization(.never)
+
                     
                     TextField("Password", text: $password)
                         .padding()
@@ -38,10 +61,13 @@ struct CreateAUserView: View {
                         .cornerRadius(10)
                         .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.automatic/*@END_MENU_TOKEN@*/)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        .textInputAutocapitalization(.never)
+
                     
                     
                     Button("Sign Up") {
                         register()
+                        dataManager.addUser(name: firstName ,email: email)
                         createdUser = true
                         email = ""
                         password = ""
@@ -92,18 +118,13 @@ struct CreateAUserView: View {
                 print(error!.localizedDescription)
             }
         }
-    }
-    func login() {
-        Auth.auth().signIn(withEmail: email, password: password) {result , error in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-        }
+        
     }
     
     struct CreateAUserView_Previews: PreviewProvider {
         static var previews: some View {
             CreateAUserView()
+                .environmentObject(DataManager())
             
         }
     }
