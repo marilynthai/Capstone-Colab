@@ -13,6 +13,7 @@ class LoginManager : ObservableObject {
     @Published var userID = ""
     
     func login(email:String, password:String) {
+
         Auth.auth().signIn(withEmail: email, password: password) {result , error in
             if error != nil {
                 print(error!.localizedDescription)
@@ -29,7 +30,8 @@ class LoginManager : ObservableObject {
         }
     }
 }
-    
+
+//Home View
     struct TestContentView : View {
         @StateObject var loginManager = LoginManager()
         @EnvironmentObject var dataManager:DataManager
@@ -46,7 +48,7 @@ class LoginManager : ObservableObject {
             }
         }
     }
-    
+//Login
     struct TestLoginView : View {
         @ObservedObject var loginManager : LoginManager
         @EnvironmentObject var dataManager:DataManager
@@ -171,7 +173,27 @@ class LoginManager : ObservableObject {
                             }
                         }
                         
+                        
                     }
+                    Button {
+                    let firebaseAuth = Auth.auth()
+                       do {
+                         try firebaseAuth.signOut()
+                           print("signed out")
+                           guard let userID = Auth.auth().currentUser?.uid else { return print("No user")}
+                           print(userID)
+                       } catch let signOutError as NSError {
+                         print("Error signing out: %@", signOutError)
+                       }
+                    } label: {
+                        Text("Log Out")
+                    }
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
                     
                     .navigationTitle("Posts")
                     //                 adding a post with + button

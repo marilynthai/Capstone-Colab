@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		300433272987724200B7D527 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300433262987724200B7D527 /* User.swift */; };
+		3097105F2988520A00897010 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097105E2988520A00897010 /* LoginManager.swift */; };
 		309A773D29809DFB00B0145F /* NewTestProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A773C29809DFB00B0145F /* NewTestProjectApp.swift */; };
 		309A773F29809DFB00B0145F /* CreateAUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A773E29809DFB00B0145F /* CreateAUserView.swift */; };
 		309A774129809DFD00B0145F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 309A774029809DFD00B0145F /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		300433262987724200B7D527 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3097105E2988520A00897010 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		309A773929809DFB00B0145F /* NewTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309A773C29809DFB00B0145F /* NewTestProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTestProjectApp.swift; sourceTree = "<group>"; };
 		309A773E29809DFB00B0145F /* CreateAUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAUserView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		3097105D298851ED00897010 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				309A777A2980B5C600B0145F /* DataManager.swift */,
+				3097105E2988520A00897010 /* LoginManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		309A773029809DFB00B0145F = {
 			isa = PBXGroup;
 			children = (
@@ -140,9 +151,9 @@
 		309A773B29809DFB00B0145F /* NewTestProject */ = {
 			isa = PBXGroup;
 			children = (
+				3097105D298851ED00897010 /* Managers */,
 				309A773C29809DFB00B0145F /* NewTestProjectApp.swift */,
 				309A778A2981C0DA00B0145F /* Views */,
-				309A777A2980B5C600B0145F /* DataManager.swift */,
 				309A77742980AD9A00B0145F /* GoogleService-Info.plist */,
 				309A774029809DFD00B0145F /* Assets.xcassets */,
 				309A774229809DFD00B0145F /* NewTestProject.entitlements */,
@@ -340,6 +351,7 @@
 				309A77772980B4A200B0145F /* AllPostsView.swift in Sources */,
 				309A77812981BF3F00B0145F /* LoginView.swift in Sources */,
 				309A77832981BF8C00B0145F /* MyPostsView.swift in Sources */,
+				3097105F2988520A00897010 /* LoginManager.swift in Sources */,
 				309A777B2980B5C600B0145F /* DataManager.swift in Sources */,
 				6F3ECD902988477A00AB7F79 /* TestContentView.swift in Sources */,
 				309A773F29809DFB00B0145F /* CreateAUserView.swift in Sources */,
