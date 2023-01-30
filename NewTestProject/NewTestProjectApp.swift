@@ -17,8 +17,8 @@ struct NewTestProjectApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            LoginView()
-                .environmentObject(DataManager())
+            TestContentView()
+//                .environmentObject(DataManager())
             
         }
     }
