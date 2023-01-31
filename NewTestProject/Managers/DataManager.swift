@@ -70,7 +70,8 @@ class DataManager:ObservableObject {
                     let description = data["description"] as? String ?? ""
                     let contactEmail = data["Contact Email"] as? String ?? ""
                     let category = data["category"] as? String ?? ""
-                    let post = Post(id: id, description: description, name: name, contact_email: contactEmail, category: category)
+                    let authID = data["authID"] as? String ?? ""
+                    let post = Post(id: id, description: description, name: name, contact_email: contactEmail, category: category, authID: authID)
                     self.posts.append(post)
                 }
             }
@@ -80,7 +81,8 @@ class DataManager:ObservableObject {
         let db = Firestore.firestore()
         let ref = db.collection("Posts").document()
         let docId = ref.documentID
-        ref.setData(["id":docId,"name": name, "description" :description,"contact email":contactEmail, "category": category]){error in
+        let authID = Auth.auth().currentUser!.uid
+        ref.setData(["id":docId,"name": name, "description" :description,"contact email":contactEmail, "category": category, "authID":authID]){error in
             if error != nil {
                 print("could not add post")
             }

@@ -13,4 +13,5 @@ struct Post: Identifiable {
     var name: String
     var contact_email: String
     var category: String
+    var authID: String
 }
