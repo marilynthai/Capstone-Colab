@@ -11,12 +11,15 @@ import Firebase
 class DataManager:ObservableObject {
     //all views with @Published variables will be changed when they change
     @Published var posts: [Post] = []
+    @Published var userPosts: [Post] = []
     @Published var users: [User] = []
     
     
     init() {
         fetchPosts()
+        fetchUserPosts()
         fetchUsers()
+        
     }
     
     func fetchUsers() {
@@ -77,6 +80,35 @@ class DataManager:ObservableObject {
             }
         }
     }
+    
+    func fetchUserPosts(){
+        userPosts.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection("Posts")
+        ref.getDocuments { info, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let info = info {
+                for document in info.documents {
+                    let data = document.data()
+                    let authID = data["authID"] as? String ?? ""
+                    if authID == Auth.auth().currentUser!.uid {
+                        let id = data["id"] as? String ?? ""
+                        let name = data["name"] as? String ?? ""
+                        let description = data["description"] as? String ?? ""
+                        let contactEmail = data["Contact Email"] as? String ?? ""
+                        let category = data["category"] as? String ?? ""
+                        let authID = data["authID"] as? String ?? ""
+                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID)
+                        self.userPosts.append(post)
+                    }
+                }
+            }
+        }
+    }
+    
     func addPost(name: String,description:String,contactEmail:String, category:String) {
         let db = Firestore.firestore()
         let ref = db.collection("Posts").document()

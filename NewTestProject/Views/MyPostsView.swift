@@ -12,63 +12,66 @@ struct MyPostsView: View {
     @EnvironmentObject var dataManager:DataManager
     @State private var showAdd = false
     
-
+    
     var body: some View {
         
         ZStack{
             NavigationView {
-                List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                List(dataManager.userPosts, id:\.id) { post in
                     NavigationLink {
-                        SinglePostView()
-                    } label:{
-                        Image(systemName:"photo.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 70)
-                            .cornerRadius(4)
-                        
-                        VStack(alignment: .leading){
-                            Text("Post title")
-                                .fontWeight(.bold)
+                        TestSinglePostView(post: post)
+                    } label: {
+                        HStack {
+                            Image(systemName:"photo.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 70)
+                                .cornerRadius(4)
                             
-                            Text("Secondary text")
-                                .font(.subheadline)
+                            VStack(alignment: .leading){
+                                Text(post.name)
+                                    .fontWeight(.bold)
+                                
+                                Text(post.description)
+                                    .font(.subheadline)
+                            }
                         }
                     }
                 }
                 .navigationTitle("My Posts")
-                
+
             }
-        
-        }
-//        TabView {
-//            AllPostsView()
-//                .tabItem(){
-//                    Text("All posts")
-//                }
-//            ClaimsView()
-//                .tabItem(){
-//                    Text("My Claims")
-//                }
-//            CreatePostView()
-//                .tabItem(){
-//                    Text("Create A Post")
-//
-//                }
-            //            List(dataManager.posts, id:\.id) { post in
-            //                    Text(post.name)
-            //                }
-            //
-            //                .navigationBarItems(trailing:Button(action:{
-            //                    showAdd.toggle()
-            //                },label: {
-            //                    Image(systemName:"plus")
-            //                }))
-            //                .sheet(isPresented: $showAdd){
-            //                    CreatePostView()
             
         }
+        
     }
+    //        TabView {
+    //            AllPostsView()
+    //                .tabItem(){
+    //                    Text("All posts")
+    //                }
+    //            ClaimsView()
+    //                .tabItem(){
+    //                    Text("My Claims")
+    //                }
+    //            CreatePostView()
+    //                .tabItem(){
+    //                    Text("Create A Post")
+    //
+    //                }
+    //            List(dataManager.posts, id:\.id) { post in
+    //                    Text(post.name)
+    //                }
+    //
+    //                .navigationBarItems(trailing:Button(action:{
+    //                    showAdd.toggle()
+    //                },label: {
+    //                    Image(systemName:"plus")
+    //                }))
+    //                .sheet(isPresented: $showAdd){
+    //                    CreatePostView()
+    
+}
     
     
     struct MyPostsView_Previews: PreviewProvider {

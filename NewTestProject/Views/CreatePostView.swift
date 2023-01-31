@@ -78,6 +78,8 @@ struct CreatePostView: View {
                         newContactEmail = ""
                         category = ""
                         dataManager.fetchPosts()
+                        dataManager.fetchUserPosts()
+                        
                         
                     } label: {
                         Text("Save Post")
