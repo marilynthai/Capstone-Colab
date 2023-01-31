@@ -17,46 +17,51 @@ struct AllPostsView: View {
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            
-            TabView {
-                TestAllPostView()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
+                if loginManager.isLoggedIn {
+                    
+                    TabView {
+                        TestAllPostView()
+                            .tabItem {
+                                Label("Home", systemImage: "house.fill")
+                            }
+                        
+                        ClaimsView()
+                        
+                            .tabItem {
+                                Label("My Claims", systemImage: "heart")
+                            }
+                        MyPostsView()
+                            .tabItem {
+                                Label("My Posts", systemImage: "list.dash")
+                            }
+                        
+                        CreatePostView()
+                            .tabItem {
+                                Label("Create Post", systemImage: "plus.circle.fill")
+                            }
+                        
+                        
                     }
-                
-                ClaimsView()
-                
-                    .tabItem {
-                        Label("My Claims", systemImage: "heart")
+                    .accentColor(.red)
+                    
+                    Button {
+                        loginManager.logout()
+                    } label: {
+                        Text("Log Out")
                     }
-                MyPostsView()
-                    .tabItem {
-                        Label("My Posts", systemImage: "list.dash")
-                    }
-                
-                CreatePostView()
-                    .tabItem {
-                        Label("Create Post", systemImage: "plus.circle.fill")
-                    }
-                
-                
-            }
-            .accentColor(.red)
-                Button {
-                    loginManager.logout()
-                    // how do we get back to home page
-                } label: {
-                    Text("Log Out")
+                    .font(.system(.headline, design: .rounded))
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.red)
+                    .cornerRadius(10)
+                    .padding()
+                    
+                } else {
+                    LoginView(loginManager: loginManager)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .transition(.move(edge: .leading))
                 }
-                .font(.system(.headline, design: .rounded))
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(10)
-                .padding()
-                
         }
-
     }
 
         

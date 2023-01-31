@@ -12,7 +12,6 @@ import Firebase
 @main
 struct NewTestProjectApp: App {
     @StateObject var dataManager = DataManager()
-    @StateObject var sessionManager = SessionStore()
 
     init() {
         FirebaseApp.configure()
@@ -20,7 +19,8 @@ struct NewTestProjectApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environmentObject(SessionStore())
+                .environmentObject(DataManager())
+
             
         }
     }

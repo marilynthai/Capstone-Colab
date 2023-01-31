@@ -11,7 +11,6 @@ import Firebase
 struct LoginView: View {
     @EnvironmentObject var dataManager:DataManager
     @StateObject var loginManager = LoginManager()
-    @EnvironmentObject var session: SessionStore
 
 
     @State private var email = ""
