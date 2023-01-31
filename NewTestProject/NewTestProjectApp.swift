@@ -11,7 +11,8 @@ import Firebase
 
 @main
 struct NewTestProjectApp: App {
-    @StateObject var dataManager = DataManager()
+    @EnvironmentObject var loginManager:LoginManager
+    @EnvironmentObject var dataManager:DataManager
 
     init() {
         FirebaseApp.configure()
