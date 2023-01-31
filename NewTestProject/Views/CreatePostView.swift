@@ -73,6 +73,12 @@ struct CreatePostView: View {
                     
                     Button {
                         dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: newContactEmail,category: category)
+                        newPostName = ""
+                        newPostDescription = ""
+                        newContactEmail = ""
+                        category = ""
+                        dataManager.fetchPosts()
+                        
                     } label: {
                         Text("Save Post")
                     }
