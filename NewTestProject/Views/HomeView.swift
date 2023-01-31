@@ -14,7 +14,7 @@ struct HomeView: View {
     @State private var wrongUsername = 0
     @State private var wrongPassword = 0
     @State private var showingLoginScreen = false
-    @StateObject var loginManager = LoginManager()
+    @EnvironmentObject var loginManager:LoginManager
     @EnvironmentObject var dataManager:DataManager
     
     var body: some View {
@@ -96,6 +96,7 @@ struct HomeView: View {
         static var previews: some View {
             HomeView()
                 .environmentObject(DataManager())
+                . environmentObject(LoginManager())
         }
     }
     

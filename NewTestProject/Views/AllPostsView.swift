@@ -10,51 +10,54 @@ import Firebase
 
 struct AllPostsView: View {
     @EnvironmentObject var dataManager:DataManager
-    @StateObject var loginManager = LoginManager()
+    @EnvironmentObject var loginManager:LoginManager
     @State private var showAdd = false
     @State private var search = ""
     
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
+            if loginManager.isLoggedIn {
+                TabView {
+                    TestAllPostView()
+                        .tabItem {
+                            Label("Home", systemImage: "house.fill")
+                        }
                     
-                    TabView {
-                        TestAllPostView()
-                            .tabItem {
-                                Label("Home", systemImage: "house.fill")
-                            }
-                        
-                        ClaimsView()
-                        
-                            .tabItem {
-                                Label("My Claims", systemImage: "heart")
-                            }
-                        MyPostsView()
-                            .tabItem {
-                                Label("My Posts", systemImage: "list.dash")
-                            }
-                        
-                        CreatePostView()
-                            .tabItem {
-                                Label("Create Post", systemImage: "plus.circle.fill")
-                            }
-                        
-                        
-                    }
-                    .accentColor(.red)
+                    ClaimsView()
                     
-                    Button {
-                        loginManager.logout()
-                    } label: {
-                        Text("Log Out")
-                    }
-                    .font(.system(.headline, design: .rounded))
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .cornerRadius(10)
-                    .padding()
+                        .tabItem {
+                            Label("My Claims", systemImage: "heart")
+                        }
+                    MyPostsView()
+                        .tabItem {
+                            Label("My Posts", systemImage: "list.dash")
+                        }
                     
+                    CreatePostView()
+                        .tabItem {
+                            Label("Create Post", systemImage: "plus.circle.fill")
+                        }
+                    
+                    
+                }
+                .accentColor(.red)
+                
+                Button {
+                    loginManager.logout()
+                } label: {
+                    Text("Log Out")
+                }
+                .font(.system(.headline, design: .rounded))
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.red)
+                .cornerRadius(10)
+                .padding()
+                
+            } else {
+                HomeView()
+            }
         }
     }
 
@@ -122,5 +125,6 @@ struct AllPostsView_Previews: PreviewProvider {
     static var previews: some View {
         AllPostsView()
             .environmentObject(DataManager())
+            .environmentObject(LoginManager())
     }
 }

@@ -20,8 +20,8 @@ struct NewTestProjectApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(DataManager())
+                .environmentObject(LoginManager())
 
-            
         }
     }
 }
