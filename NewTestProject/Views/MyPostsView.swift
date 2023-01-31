@@ -6,42 +6,41 @@
 // 
 
 import SwiftUI
+import Firebase
 
-struct MyPostView: View {
+struct MyPostsView: View {
     @EnvironmentObject var dataManager:DataManager
     @State private var showAdd = false
     
+
     var body: some View {
-        NavigationView {
-            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                NavigationLink {
-                    SinglePostView()
-                } label:{
-                    Image(systemName:"photo.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 70)
-                        .cornerRadius(4)
-                    
-                    VStack(alignment: .leading){
-                        Text("Post title")
-                            .fontWeight(.bold)
+        
+        ZStack{
+            NavigationView {
+                List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                    NavigationLink {
+                        SinglePostView()
+                    } label:{
+                        Image(systemName:"photo.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 70)
+                            .cornerRadius(4)
                         
-                        Text("Secondary test")
-                            .font(.subheadline)
+                        VStack(alignment: .leading){
+                            Text("Post title")
+                                .fontWeight(.bold)
+                            
+                            Text("Secondary text")
+                                .font(.subheadline)
+                        }
                     }
                 }
+                .navigationTitle("My Posts")
+                
             }
-            .navigationTitle("My Posts")
-
-        }
         
-//        ZStack{
-//            Color.blue.opacity(0.25)
-//            Image(systemName: "person.circle")
-//                .foregroundColor(Color.black)
-//                .font(.system(size:80))
-//        }
+        }
 //        TabView {
 //            AllPostsView()
 //                .tabItem(){
@@ -50,12 +49,12 @@ struct MyPostView: View {
 //            ClaimsView()
 //                .tabItem(){
 //                    Text("My Claims")
-//                    }
+//                }
 //            CreatePostView()
 //                .tabItem(){
 //                    Text("Create A Post")
 //
-//        }
+//                }
             //            List(dataManager.posts, id:\.id) { post in
             //                    Text(post.name)
             //                }
@@ -72,11 +71,11 @@ struct MyPostView: View {
     }
     
     
-    struct MyPostView_Previews: PreviewProvider {
+    struct MyPostsView_Previews: PreviewProvider {
         static var previews: some View {
-            MyPostView()
+            MyPostsView()
                 .environmentObject(DataManager())
+        }
+        
     }
-    
-}
 
