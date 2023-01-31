@@ -19,7 +19,7 @@ struct AllPostsView: View {
         ZStack(alignment: .topTrailing) {
             
             TabView {
-                TestAllPostsView()
+                TestAllPostView()
                     .tabItem {
                         Label("Home", systemImage: "house.fill")
                     }

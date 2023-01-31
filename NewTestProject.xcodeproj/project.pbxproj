@@ -33,8 +33,7 @@
 		309A77892981C0A300B0145F /* EditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A77882981C0A300B0145F /* EditPostView.swift */; };
 		309A778C2981C12C00B0145F /* ClaimsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A778B2981C12C00B0145F /* ClaimsView.swift */; };
 		6F3ECD902988477A00AB7F79 /* TestContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3ECD8F2988477A00AB7F79 /* TestContentView.swift */; };
-		6FFDD3A4298895FA00EE90AB /* TestMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFDD3A3298895FA00EE90AB /* TestMainView.swift */; };
-		6FFDD3A62988AC4A00EE90AB /* TestAllPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFDD3A52988AC4900EE90AB /* TestAllPostView.swift */; };
+		6FFDD3A82988B47A00EE90AB /* TestAllPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFDD3A72988B47A00EE90AB /* TestAllPostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +79,7 @@
 		309A77882981C0A300B0145F /* EditPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostView.swift; sourceTree = "<group>"; };
 		309A778B2981C12C00B0145F /* ClaimsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimsView.swift; sourceTree = "<group>"; };
 		6F3ECD8F2988477A00AB7F79 /* TestContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestContentView.swift; sourceTree = "<group>"; };
-		6FFDD3A3298895FA00EE90AB /* TestMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainView.swift; sourceTree = "<group>"; };
-		6FFDD3A52988AC4900EE90AB /* TestAllPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAllPostView.swift; sourceTree = "<group>"; };
+		6FFDD3A72988B47A00EE90AB /* TestAllPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAllPostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +195,7 @@
 				309A77842981C03F00B0145F /* HomeView.swift */,
 				309A77802981BF3F00B0145F /* LoginView.swift */,
 				309A773E29809DFB00B0145F /* CreateAUserView.swift */,
-				6FFDD3A52988AC4900EE90AB /* TestAllPostView.swift */,
+				6FFDD3A72988B47A00EE90AB /* TestAllPostView.swift */,
 				309A77762980B4A200B0145F /* AllPostsView.swift */,
 				309A77822981BF8C00B0145F /* MyPostsView.swift */,
 				309A778B2981C12C00B0145F /* ClaimsView.swift */,
@@ -205,7 +203,6 @@
 				309A77862981C08C00B0145F /* SinglePostView.swift */,
 				309A77882981C0A300B0145F /* EditPostView.swift */,
 				6F3ECD8F2988477A00AB7F79 /* TestContentView.swift */,
-				6FFDD3A3298895FA00EE90AB /* TestMainView.swift */,
 				3097105C298832AD00897010 /* Models */,
 			);
 			path = Views;
@@ -354,6 +351,7 @@
 			files = (
 				300433272987724200B7D527 /* User.swift in Sources */,
 				309A77852981C04000B0145F /* HomeView.swift in Sources */,
+				6FFDD3A82988B47A00EE90AB /* TestAllPostView.swift in Sources */,
 				309A77772980B4A200B0145F /* AllPostsView.swift in Sources */,
 				309A77812981BF3F00B0145F /* LoginView.swift in Sources */,
 				309A77832981BF8C00B0145F /* MyPostsView.swift in Sources */,
@@ -363,10 +361,8 @@
 				309A773F29809DFB00B0145F /* CreateAUserView.swift in Sources */,
 				309A777D29819F0200B0145F /* CreatePostView.swift in Sources */,
 				309A773D29809DFB00B0145F /* NewTestProjectApp.swift in Sources */,
-				6FFDD3A62988AC4A00EE90AB /* TestAllPostView.swift in Sources */,
 				309A77892981C0A300B0145F /* EditPostView.swift in Sources */,
 				309A77872981C08C00B0145F /* SinglePostView.swift in Sources */,
-				6FFDD3A4298895FA00EE90AB /* TestMainView.swift in Sources */,
 				309A77792980B4E100B0145F /* Post.swift in Sources */,
 				309A778C2981C12C00B0145F /* ClaimsView.swift in Sources */,
 			);
