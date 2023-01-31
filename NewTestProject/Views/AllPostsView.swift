@@ -17,7 +17,6 @@ struct AllPostsView: View {
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-                if loginManager.isLoggedIn {
                     
                     TabView {
                         TestAllPostView()
@@ -56,11 +55,6 @@ struct AllPostsView: View {
                     .cornerRadius(10)
                     .padding()
                     
-                } else {
-                    LoginView(loginManager: loginManager)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .transition(.move(edge: .leading))
-                }
         }
     }
 
