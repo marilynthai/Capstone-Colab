@@ -71,7 +71,7 @@ class DataManager:ObservableObject {
                     let contactEmail = data["Contact Email"] as? String ?? ""
                     let category = data["category"] as? String ?? ""
                     let authID = data["authID"] as? String ?? ""
-                    let post = Post(id: id, description: description, name: name, contact_email: contactEmail, category: category, authID: authID)
+                    let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID)
                     self.posts.append(post)
                 }
             }

@@ -13,6 +13,7 @@ struct TestAllPostView: View {
     @StateObject var loginManager = LoginManager()
     @State private var showAdd = false
     @State private var search = ""
+    @State private var postID = ""
     
     var body: some View {
         
@@ -27,9 +28,7 @@ struct TestAllPostView: View {
                     .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                 
                 List(dataManager.posts, id:\.id) { post in
-                    NavigationLink {
-                        SinglePostView()
-                    } label: {
+                    NavigationLink(destination: TestSinglePostView(post: post)) {
                         HStack {
                             Image(systemName:"photo.fill")
                                 .resizable()
@@ -45,7 +44,27 @@ struct TestAllPostView: View {
                                     .font(.subheadline)
                             }
                         }
-                    }
+                            }
+                        }
+//                    NavigationLink {
+//                        SinglePostView(post: post)
+//                    } label: {
+//                        HStack {
+//                            Image(systemName:"photo.fill")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(height: 70)
+//                                .cornerRadius(4)
+//
+//                            VStack(alignment: .leading){
+//                                Text(post.name)
+//                                    .fontWeight(.bold)
+//
+//                                Text(post.description)
+//                                    .font(.subheadline)
+//                            }
+//                        }
+//                    }
                 }
             }
             .navigationTitle("All Posts")
@@ -59,4 +78,3 @@ struct TestAllPostView: View {
                 .environmentObject(DataManager())
         }
     }
-}
