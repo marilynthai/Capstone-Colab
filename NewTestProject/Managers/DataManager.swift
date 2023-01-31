@@ -10,6 +10,7 @@ import Firebase
 
 class DataManager:ObservableObject {
     //all views with @Published variables will be changed when they change
+    @Published var db = Firestore.firestore()
     @Published var posts: [Post] = []
     @Published var userPosts: [Post] = []
     @Published var users: [User] = []
@@ -24,7 +25,6 @@ class DataManager:ObservableObject {
     
     func fetchUsers() {
         users.removeAll()
-        let db = Firestore.firestore()
         let ref = db.collection("Users")
         ref.getDocuments { info, error in
             guard error == nil else {
@@ -45,7 +45,6 @@ class DataManager:ObservableObject {
     }
     
     func addUser(name: String,email:String) {
-        let db = Firestore.firestore()
         let ref = db.collection("Users").document()
         let docId = ref.documentID
         ref.setData(["id":docId,"name": name, "email" :email]){error in
@@ -58,7 +57,6 @@ class DataManager:ObservableObject {
     
     func fetchPosts() {
         posts.removeAll()
-        let db = Firestore.firestore()
         let ref = db.collection("Posts")
         ref.getDocuments { info, error in
             guard error == nil else {
@@ -83,7 +81,6 @@ class DataManager:ObservableObject {
     
     func fetchUserPosts(){
         userPosts.removeAll()
-        let db = Firestore.firestore()
         let ref = db.collection("Posts")
         ref.getDocuments { info, error in
             guard error == nil else {
@@ -110,7 +107,6 @@ class DataManager:ObservableObject {
     }
     
     func addPost(name: String,description:String,contactEmail:String, category:String) {
-        let db = Firestore.firestore()
         let ref = db.collection("Posts").document()
         let docId = ref.documentID
         let authID = Auth.auth().currentUser!.uid
