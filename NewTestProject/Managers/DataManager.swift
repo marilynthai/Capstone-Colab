@@ -187,5 +187,40 @@ class DataManager:ObservableObject {
                     print("User cannot unclaim own post!")
                 }
             }
+    
+    func editPost(id:String,authId:String,name:String,description:String,category:String) {
+        let ref = db.collection("Posts").document(id)
+                let currentAuthId = Auth.auth().currentUser!.uid
+                if authId == currentAuthId {
+                    ref.updateData([
+                        "description":description,
+                        "name":name,
+                        "category": category
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+        
+                } else {
+                    print("User cannot edit others posts!")
+                }
+            }
+    
+    func deletePost(id:String,authId:String) {
+        let currentAuthId = Auth.auth().currentUser!.uid
+        if authId == currentAuthId {
+            db.collection("Posts").document(id).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+            }
+        }
+        
+    }
     }
 

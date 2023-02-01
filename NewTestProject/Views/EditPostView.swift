@@ -7,11 +7,14 @@
 
 import SwiftUI
 
+
 struct EditPostView: View {
-    @State private var changePostName = ""
-    @State private var changePostDescription = ""
-    @State private var changeContactEmail = ""
-    @State private var changeCategory = ""
+    @State var editPost:Post
+    @EnvironmentObject var dataManager:DataManager
+//    @State private var changePostName = ""
+//    @State private var changePostDescription = ""
+//    @State private var changeContactEmail = ""
+//    @State private var changeCategory = ""
     
     var body: some View {
         NavigationView {
@@ -30,7 +33,7 @@ struct EditPostView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Name")
-                        TextField("Post Name",text: $changePostName)
+                        TextField("Post Name",text: $editPost.name)
                         //should populate with original post data
                             .padding()
                             .frame(width:300, height:50)
@@ -41,7 +44,7 @@ struct EditPostView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Description")
-                        TextField("Description",text: $changePostDescription)
+                        TextField("Description",text: $editPost.description)
                         //should populate with original post data
                                                 .padding()
                                                 .frame(width:300, height:50)
@@ -52,7 +55,7 @@ struct EditPostView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Contact Email")
-                        TextField("Contact Email",text: $changeContactEmail)
+                        TextField("Contact Email",text: $editPost.contactEmail)
                         //should populate with original post data
                             .padding()
                             .frame(width:300, height:50)
@@ -64,7 +67,7 @@ struct EditPostView: View {
                     VStack(alignment: .leading) {
                         Text("Category")
                             .multilineTextAlignment(.leading)
-                        TextField("Category",text: $changeCategory)
+                        TextField("Category",text: $editPost.category)
                         //should populate with original post data
                             .padding()
                             .frame(width:300, height:50)
@@ -76,7 +79,10 @@ struct EditPostView: View {
 
                     
                     Button {
-                        // update backend post func
+                        dataManager.editPost(id: editPost.id, authId: editPost.authID, name: editPost.name, description: editPost.description, category: editPost.category)
+                        dataManager.fetchPosts()
+                        dataManager.fetchUserClaims()
+                        dataManager.fetchUserPosts()
                     } label: {
                         Text("Save Post")
                     }
@@ -88,7 +94,10 @@ struct EditPostView: View {
                     .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
                     
                     Button {
-                        // delete backend post func
+                        dataManager.deletePost(id: editPost.id, authId: editPost.authID)
+                        dataManager.fetchPosts()
+                        dataManager.fetchUserClaims()
+                        dataManager.fetchUserPosts()
                     } label: {
                         Text("Delete Post")
                     }
@@ -107,9 +116,9 @@ struct EditPostView: View {
     }
     
     
-    struct EditPostView_Previews: PreviewProvider {
-        static var previews: some View {
-            EditPostView()
-        }
-    }
+//    struct EditPostView_Previews: PreviewProvider {
+//        static var previews: some View {
+//            EditPostView()
+//        }
+//    }
 }

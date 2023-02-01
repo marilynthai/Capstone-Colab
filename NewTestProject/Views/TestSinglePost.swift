@@ -75,7 +75,7 @@ struct TestSinglePostView: View {
                     if post.claimId != "" {
                         Text("Claimed by:\(post.claimId)")}
                     else {Text("Not Claimed")}
-                    NavigationLink(destination: EditPostView()) {
+                    NavigationLink(destination: EditPostView(editPost: post)) {
                         Text("Edit Post")
                     }
                 }
