@@ -102,7 +102,7 @@ struct EditPostView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Create Post")
+            .navigationTitle("Edit Post")
         }
     }
     

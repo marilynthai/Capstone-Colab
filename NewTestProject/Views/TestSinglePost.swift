@@ -4,12 +4,15 @@
 //
 //  Created by Marilyn Thai on 1/31/23.
 //
-
+// from all posts to single post
 import Foundation
 import SwiftUI
+import Firebase
 
 struct TestSinglePostView: View {
+    
     var post: Post
+    @EnvironmentObject var dataManager:DataManager
     
 
     var body: some View {
@@ -43,6 +46,39 @@ struct TestSinglePostView: View {
                         .font(.subheadline)
                     
                 }
+                
+                if post.claimId != "" && post.claimId != Auth.auth().currentUser!.uid && post.authID != Auth.auth().currentUser!.uid {
+                    Text("Claimed")
+                } else if post.claimId != "" && post.claimId == Auth.auth().currentUser!.uid {
+                    Button("Unclaim") {
+                        dataManager.unClaimPost(id: post.id,authId: post.authID)
+                        dataManager.fetchPosts()
+                    }
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                }
+                else if post.claimId == "" && post.authID != Auth.auth().currentUser!.uid {
+                    Button("Claim") {
+                        dataManager.claimPost(id: post.id,authId: post.authID)
+                        dataManager.fetchPosts()
+                        dataManager.fetchUserClaims()
+                    }
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                } else if post.authID == Auth.auth().currentUser!.uid {
+                    if post.claimId != "" {
+                        Text("Claimed by:\(post.claimId)")}
+                    else {Text("Not Claimed")}
+                    NavigationLink(destination: EditPostView()) {
+                        Text("Edit Post")
+                    }
+                }
+                
+                
                 
             }
         }

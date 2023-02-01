@@ -8,37 +8,42 @@
 import SwiftUI
 
 struct ClaimsView: View {
+    @EnvironmentObject var dataManager:DataManager
+    
     var body: some View {
-        NavigationView {
-            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                NavigationLink {
-                    SinglePostView()
-                } label:{
-                    HStack {
-                        Image(systemName:"photo.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 70)
-                            .cornerRadius(4)
-                        
-                        VStack(alignment: .leading){
-                            Text("Post Title")
-                                .fontWeight(.bold)
+        ZStack{
+            NavigationView {
+                List(dataManager.userClaims, id:\.id) { post in
+                    NavigationLink {
+                        TestSinglePostView(post: post)
+                    } label: {
+                        HStack {
+                            Image(systemName:"photo.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 70)
+                                .cornerRadius(4)
                             
-                            Text("Claimed")
-                                .font(.subheadline)
+                            VStack(alignment: .leading){
+                                Text(post.name)
+                                    .fontWeight(.bold)
+                                
+                                Text(post.description)
+                                    .font(.subheadline)
+                            }
                         }
                     }
                 }
+                .navigationTitle("My Claims")
+                
             }
-            .navigationTitle("My Claims")
-
+            
         }
     }
-}
-
-struct ClaimsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ClaimsView()
+    
+    struct ClaimsView_Previews: PreviewProvider {
+        static var previews: some View {
+            ClaimsView()
+        }
     }
 }

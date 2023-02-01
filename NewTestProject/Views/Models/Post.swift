@@ -14,4 +14,5 @@ struct Post: Identifiable {
     var contactEmail: String
     var category: String
     var authID: String
+    var claimId:String
 }

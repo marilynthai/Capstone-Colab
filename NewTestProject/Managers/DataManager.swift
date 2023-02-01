@@ -14,6 +14,8 @@ class DataManager:ObservableObject {
     @Published var posts: [Post] = []
     @Published var userPosts: [Post] = []
     @Published var users: [User] = []
+    @Published var userClaims: [Post] = []
+
     
     
     init() {
@@ -72,7 +74,8 @@ class DataManager:ObservableObject {
                     let contactEmail = data["Contact Email"] as? String ?? ""
                     let category = data["category"] as? String ?? ""
                     let authID = data["authID"] as? String ?? ""
-                    let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID)
+                    let claimId = data["claimId"] as? String ?? ""
+                    let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId)
                     self.posts.append(post)
                 }
             }
@@ -98,8 +101,37 @@ class DataManager:ObservableObject {
                         let contactEmail = data["Contact Email"] as? String ?? ""
                         let category = data["category"] as? String ?? ""
                         let authID = data["authID"] as? String ?? ""
-                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID)
+                        let claimId = data["claimId"] as? String ?? ""
+                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId)
                         self.userPosts.append(post)
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchUserClaims(){
+        userClaims.removeAll()
+        let ref = db.collection("Posts")
+        ref.getDocuments { info, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let info = info {
+                for document in info.documents {
+                    let data = document.data()
+                    let claimID = data["claimId"] as? String ?? ""
+                    if claimID == Auth.auth().currentUser!.uid {
+                        let id = data["id"] as? String ?? ""
+                        let name = data["name"] as? String ?? ""
+                        let description = data["description"] as? String ?? ""
+                        let contactEmail = data["Contact Email"] as? String ?? ""
+                        let category = data["category"] as? String ?? ""
+                        let authID = data["authID"] as? String ?? ""
+                        let claimId = data["claimId"] as? String ?? ""
+                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId)
+                        self.userClaims.append(post)
                     }
                 }
             }
@@ -118,4 +150,42 @@ class DataManager:ObservableObject {
         
     }
     
-}
+    func claimPost(id:String,authId:String) {
+        let ref = db.collection("Posts").document(id)
+                let currentAuthId = Auth.auth().currentUser!.uid
+                if authId != currentAuthId {
+                    ref.updateData([
+                        "claimId":currentAuthId
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+        
+                } else {
+                    print("User cannot claim own post!")
+                }
+            }
+    
+    func unClaimPost(id:String,authId:String) {
+        let ref = db.collection("Posts").document(id)
+                let currentAuthId = Auth.auth().currentUser!.uid
+                if authId != currentAuthId {
+                    ref.updateData([
+                        "claimId":""
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+        
+                } else {
+                    print("User cannot unclaim own post!")
+                }
+            }
+    }
+
