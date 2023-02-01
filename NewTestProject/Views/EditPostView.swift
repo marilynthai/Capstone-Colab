@@ -11,10 +11,7 @@ import SwiftUI
 struct EditPostView: View {
     @State var editPost:Post
     @EnvironmentObject var dataManager:DataManager
-//    @State private var changePostName = ""
-//    @State private var changePostDescription = ""
-//    @State private var changeContactEmail = ""
-//    @State private var changeCategory = ""
+    @EnvironmentObject var loginManager:LoginManager
     
     var body: some View {
         NavigationView {
@@ -55,13 +52,12 @@ struct EditPostView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Contact Email")
-                        TextField("Contact Email",text: $editPost.contactEmail)
+                        Text(loginManager.userEmail)
                         //should populate with original post data
                             .padding()
                             .frame(width:300, height:50)
                             .background(Color.white.opacity(0.75))
                             .cornerRadius(10)
-                            .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                     }
                     
                     VStack(alignment: .leading) {
@@ -118,7 +114,9 @@ struct EditPostView: View {
     
 //    struct EditPostView_Previews: PreviewProvider {
 //        static var previews: some View {
-//            EditPostView()
+//            EditPostView(editPost: Post)
+//                .environmentObject(LoginManager())
+//                .environmentObject(DataManager())
 //        }
 //    }
 }

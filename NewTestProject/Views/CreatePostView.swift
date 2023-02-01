@@ -11,9 +11,10 @@ import Firebase
 
 struct CreatePostView: View {
     @EnvironmentObject var dataManager:DataManager
+    @EnvironmentObject var loginManager:LoginManager
     @State private var newPostName = ""
     @State private var newPostDescription = ""
-    @State private var newContactEmail = ""
+//    @State private var newContactEmail = ""
     @State private var category = ""
     
     var body: some View {
@@ -53,10 +54,9 @@ struct CreatePostView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Contact Email")
-                        TextField("Contact Email",text: $newContactEmail)
+                        Text(loginManager.userEmail)
                             .padding()
                             .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
                             .cornerRadius(10)
                     }
                     VStack(alignment: .leading) {
@@ -69,10 +69,10 @@ struct CreatePostView: View {
                             .cornerRadius(10)
                     }
                     Button {
-                        dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: newContactEmail,category: category)
+                        dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category)
                         newPostName = ""
                         newPostDescription = ""
-                        newContactEmail = ""
+//                        newContactEmail = ""
                         category = ""
                         dataManager.fetchPosts()
                         dataManager.fetchUserPosts()
@@ -81,7 +81,7 @@ struct CreatePostView: View {
                         Text("Save Post")
                     }
                     
-                    .disabled(newPostName.isEmpty || newPostDescription.isEmpty || newContactEmail.isEmpty || category.isEmpty)
+                    .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category.isEmpty)
                     .foregroundColor(.black)
                     .frame(width:300, height:50)
                     .background(Color.white)

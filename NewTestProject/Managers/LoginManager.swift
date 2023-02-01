@@ -11,7 +11,7 @@ import Firebase
 
 class LoginManager : ObservableObject {
     @Published var isLoggedIn = false
-    @Published var userID = ""
+    @Published var userEmail = ""
     
     func login(email:String, password:String) {
 
@@ -22,6 +22,7 @@ class LoginManager : ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     withAnimation {
                         self.isLoggedIn = true
+                        self.userEmail = email
                         print(self.isLoggedIn)
                     }
                 }
@@ -39,6 +40,7 @@ class LoginManager : ObservableObject {
              try firebaseAuth.signOut()
                self.isLoggedIn = false
                print(self.isLoggedIn)
+               self.userEmail = ""
            } catch let signOutError as NSError {
              print("Error signing out: %@", signOutError)
            }
