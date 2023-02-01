@@ -54,6 +54,7 @@ struct TestSinglePostView: View {
                         dataManager.unClaimPost(id: post.id,authId: post.authID)
                         dataManager.fetchPosts()
                         dataManager.fetchUserClaims()
+
                     }
                     .foregroundColor(.black)
                     .frame(width:300, height:50)
