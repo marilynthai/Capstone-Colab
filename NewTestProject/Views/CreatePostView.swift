@@ -6,6 +6,8 @@
 // Marilyn
 
 import SwiftUI
+import Firebase
+
 
 struct CreatePostView: View {
     @EnvironmentObject var dataManager:DataManager
@@ -17,6 +19,9 @@ struct CreatePostView: View {
     var body: some View {
         NavigationView{
             ZStack{
+                Color.blue
+                    .opacity(0.25)
+                    .ignoresSafeArea()
                 VStack {
                     Button {
                     } label: {
@@ -27,7 +32,6 @@ struct CreatePostView: View {
                     .background(Color.white)
                     .cornerRadius(10)
                     .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-                    .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
                     
                     VStack(alignment: .leading) {
                         Text("Name")
@@ -36,27 +40,24 @@ struct CreatePostView: View {
                             .frame(width:300, height:50)
                             .background(Color.white.opacity(0.75))
                             .cornerRadius(10)
-                            .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                     }
                     
                     VStack(alignment: .leading) {
                         Text("Description")
                         TextField("Description",text: $newPostDescription)
-                                                .padding()
-                                                .frame(width:300, height:50)
-                                                .background(Color.white.opacity(0.75))
-                                                .cornerRadius(10)
-                                                .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
                     }
                     
                     VStack(alignment: .leading) {
                         Text("Contact Email")
                         TextField("Contact Email",text: $newContactEmail)
-                                                .padding()
-                                                .frame(width:300, height:50)
-                                                .background(Color.white.opacity(0.75))
-                                                .cornerRadius(10)
-                                                .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
                     }
                     VStack(alignment: .leading) {
                         Text("Category")
@@ -66,11 +67,7 @@ struct CreatePostView: View {
                             .frame(width:300, height:50)
                             .background(Color.white.opacity(0.75))
                             .cornerRadius(10)
-                            .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-
                     }
-
-                    
                     Button {
                         dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: newContactEmail,category: category)
                         newPostName = ""
@@ -80,17 +77,16 @@ struct CreatePostView: View {
                         dataManager.fetchPosts()
                         dataManager.fetchUserPosts()
                         
-                        
                     } label: {
                         Text("Save Post")
                     }
+                    
+                    .disabled(newPostName.isEmpty || newPostDescription.isEmpty || newContactEmail.isEmpty || category.isEmpty)
                     .foregroundColor(.black)
                     .frame(width:300, height:50)
                     .background(Color.white)
                     .cornerRadius(10)
-                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-                    .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
-                    
+                    .padding()
                 }
                 .padding()
             }
