@@ -73,7 +73,7 @@ struct TestSinglePostView: View {
                     .cornerRadius(10)
                 } else if post.authID == Auth.auth().currentUser!.uid {
                     if post.claimId != "" {
-                        Text("Claimed by:\(post.claimId)")}
+                        Text("Claimed by: \(post.claimName)")}
                     else {Text("Not Claimed")}
                     NavigationLink(destination: EditPostView(editPost: post)) {
                         Text("Edit Post")

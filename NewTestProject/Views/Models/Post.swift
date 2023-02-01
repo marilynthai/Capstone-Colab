@@ -15,4 +15,5 @@ struct Post: Identifiable {
     var category: String
     var authID: String
     var claimId:String
+    var claimName:String
 }

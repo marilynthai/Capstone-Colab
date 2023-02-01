@@ -22,6 +22,7 @@ class DataManager:ObservableObject {
         fetchPosts()
         fetchUserPosts()
         fetchUsers()
+        fetchUserClaims()
         
     }
     
@@ -48,8 +49,7 @@ class DataManager:ObservableObject {
     
     func addUser(name: String,email:String) {
         let ref = db.collection("Users").document()
-        let docId = ref.documentID
-        ref.setData(["id":docId,"name": name, "email" :email]){error in
+        ref.setData(["name": name, "email" :email]){error in
             if error != nil {
                 print(error!.localizedDescription)
             }
@@ -75,7 +75,8 @@ class DataManager:ObservableObject {
                     let category = data["category"] as? String ?? ""
                     let authID = data["authID"] as? String ?? ""
                     let claimId = data["claimId"] as? String ?? ""
-                    let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId)
+                    let claimName = data["claimName"] as? String ?? ""
+                    let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName)
                     self.posts.append(post)
                 }
             }
@@ -102,7 +103,8 @@ class DataManager:ObservableObject {
                         let category = data["category"] as? String ?? ""
                         let authID = data["authID"] as? String ?? ""
                         let claimId = data["claimId"] as? String ?? ""
-                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId)
+                        let claimName = data["claimName"] as? String ?? ""
+                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName)
                         self.userPosts.append(post)
                     }
                 }
@@ -130,7 +132,8 @@ class DataManager:ObservableObject {
                         let category = data["category"] as? String ?? ""
                         let authID = data["authID"] as? String ?? ""
                         let claimId = data["claimId"] as? String ?? ""
-                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId)
+                        let claimName = data["claimName"] as? String ?? ""
+                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName)
                         self.userClaims.append(post)
                     }
                 }
@@ -152,10 +155,29 @@ class DataManager:ObservableObject {
     
     func claimPost(id:String,authId:String) {
         let ref = db.collection("Posts").document(id)
-                let currentAuthId = Auth.auth().currentUser!.uid
-                if authId != currentAuthId {
+        let currentAuthId = Auth.auth().currentUser!.uid
+        let currentAuthEmail = Auth.auth().currentUser!.email
+//        print(currentAuthEmail)
+        if authId != currentAuthId {
+                            ref.updateData([
+                                "claimId":currentAuthId
+                            ]) { err in
+                                if let err = err {
+                                    print("Error updating document: \(err)")
+                                } else {
+                                    print("Document successfully updated")
+                                }
+                            }
+                
+                        } else {
+                            print("User cannot claim own post!")
+                        }
+        
+        for user in users {
+            print(user.email)
+            if user.email == currentAuthEmail{
                     ref.updateData([
-                        "claimId":currentAuthId
+                        "claimName":user.name
                     ]) { err in
                         if let err = err {
                             print("Error updating document: \(err)")
@@ -165,9 +187,11 @@ class DataManager:ObservableObject {
                     }
         
                 } else {
-                    print("User cannot claim own post!")
+                    print("Claim User Name not saved")
                 }
             }
+        }
+                
     
     func unClaimPost(id:String,authId:String) {
         let ref = db.collection("Posts").document(id)
