@@ -34,6 +34,12 @@ struct MyPostsView: View {
                                 
                                 Text(post.description)
                                     .font(.subheadline)
+                                
+                                if post.claimId != "" {
+                                    Text("Claimed")
+                                        .font(.subheadline)
+                                        .foregroundColor(Color.red)
+                                }
                             }
                         }
                     }
