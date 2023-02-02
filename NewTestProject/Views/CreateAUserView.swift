@@ -15,7 +15,8 @@ struct CreateAUserView: View {
     @State private var firstName=""
     @State private var lastName=""
     @State private var userIsLoggedIn = false
-    @State private var createdUser = false
+    @State private var createUser = false
+
 
     
     var body: some View {
@@ -67,7 +68,7 @@ struct CreateAUserView: View {
                         Button("Sign Up") {
                             register()
                             dataManager.addUser(name: firstName ,email: email)
-                            createdUser = true
+                            createUser = true
                             email = ""
                             password = ""
                             firstName=""
@@ -81,6 +82,8 @@ struct CreateAUserView: View {
                         
                 
                         }
+                .alert("User Created. Please login with email and password.", isPresented: $createUser, actions: {})
+
                     }
 
                 }

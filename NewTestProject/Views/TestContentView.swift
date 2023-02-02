@@ -104,9 +104,8 @@ class TestLoginManager : ObservableObject {
                         .background(Color.white)
                         .cornerRadius(10)
                         
-                        NavigationLink(destination: CreateAUserView()) {
-                            Text("Don't have an account? Sign up here")
-                        }
+                        
+                        
                     }
                 }
                 .navigationBarHidden(true)

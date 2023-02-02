@@ -14,8 +14,8 @@ struct CreatePostView: View {
     @EnvironmentObject var loginManager:LoginManager
     @State private var newPostName = ""
     @State private var newPostDescription = ""
-//    @State private var newContactEmail = ""
     @State private var category = ""
+    @State private var createdPost = false
     
     var body: some View {
         NavigationView{
@@ -73,10 +73,11 @@ struct CreatePostView: View {
                         dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category)
                         newPostName = ""
                         newPostDescription = ""
-//                        newContactEmail = ""
                         category = ""
                         dataManager.fetchPosts()
                         dataManager.fetchUserPosts()
+                        createdPost = true
+                        
                         
                     } label: {
                         Text("Save Post")
@@ -89,7 +90,9 @@ struct CreatePostView: View {
                     .background(Color.white)
                     .cornerRadius(10)
                     .padding()
+                    
                 }
+                .alert("Post Created", isPresented: $createdPost, actions: {})
                 .padding()
             }
             .navigationTitle("Create Post")
@@ -100,6 +103,7 @@ struct CreatePostView: View {
         static var previews: some View {
             CreatePostView()
                 .environmentObject(DataManager())
+                .environmentObject(LoginManager())
         }
     }
 }
