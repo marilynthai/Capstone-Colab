@@ -82,6 +82,7 @@ struct CreatePostView: View {
                     }
                     
                     .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category.isEmpty)
+                    .buttonStyle(.plain)
                     .foregroundColor(.black)
                     .frame(width:300, height:50)
                     .background(Color.white)
