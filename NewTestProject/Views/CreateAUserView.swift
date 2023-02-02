@@ -21,47 +21,45 @@ struct CreateAUserView: View {
     var body: some View {
         NavigationView{
             ZStack {
+                Color.blue
+                    .opacity(0.25)
+                    .ignoresSafeArea()
                 VStack{
-                    if createdUser != true {
+        
                         Text("Create A New User")
                             .font(.largeTitle)
                             .bold()
                             .padding()
                         
                         TextField("First Name", text: $firstName)
-                            .padding()
-                            .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
-                            .cornerRadius(10)
-                            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
                             .textInputAutocapitalization(.never)
                         
                         
                         TextField("Last Name", text: $lastName)
-                            .padding()
-                            .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
-                            .cornerRadius(10)
-                            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
                             .textInputAutocapitalization(.never)
                         
                         
                         TextField("Email", text: $email)
-                            .padding()
-                            .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
-                            .cornerRadius(10)
-                            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
                             .textInputAutocapitalization(.never)
                         
                         
                         TextField("Password", text: $password)
-                            .padding()
-                            .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
-                            .cornerRadius(10)
-                            .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.automatic/*@END_MENU_TOKEN@*/)
-                            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
                             .textInputAutocapitalization(.never)
                         
                         
@@ -81,40 +79,13 @@ struct CreateAUserView: View {
                         .background(Color.white)
                         .cornerRadius(10)
                         
-                    } else {
-                        HomeView()
-                    }
-//                    NavigationLink(destination: HomeView()) {
-//                        Text("Login")
-//                    }
-//                    .foregroundColor(.black)
-//                    .frame(width:300, height:50)
-//                    .background(Color.white)
-//                    .cornerRadius(10)
-                    
-//                    NavigationLink("", destination:  HomeView(), isActive: $createdUser)
-//                    NavigationLink(destination:Text("You have successfully created an account!"), isActive: $createdUser) {
-//                        EmptyView()
-//                    }
-                    
-//
-//                    Button("Login") {
-//                        login()
-//                    }
-//                    .foregroundColor(.black)
-//                    .frame(width:300, height:50)
-//                    .background(Color.white)
-//                    .cornerRadius(10)
-//                    .onAppear(){
-//                        Auth.auth().addStateDidChangeListener{auth,user in
-//                            if user != nil {
-//                                userIsLoggedIn.toggle()
-//                            }
+                
                         }
                     }
 
                 }
-                 .padding()
+                 .navigationBarHidden(true)
+        
              }
     
     
