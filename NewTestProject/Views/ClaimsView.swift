@@ -30,6 +30,8 @@ struct ClaimsView: View {
                                 
                                 Text(post.description)
                                     .font(.subheadline)
+                                
+                                
                             }
                         }
                     }
@@ -44,6 +46,7 @@ struct ClaimsView: View {
     struct ClaimsView_Previews: PreviewProvider {
         static var previews: some View {
             ClaimsView()
+                .environmentObject(DataManager())
         }
     }
 }

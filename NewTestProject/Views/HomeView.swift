@@ -17,15 +17,11 @@ struct HomeView: View {
     var body: some View {
         NavigationView{
             ZStack {
-                Color.blue
-                    .opacity(0.25)
-                    .ignoresSafeArea()
-                VStack {
                     if loginManager.isLoggedIn {
                         AllPostsView().environmentObject(DataManager())
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .transition(.move(edge: .leading))
-                    } else {
+                    } else if loginManager.isLoggedIn == false {
                         TabView()
                         {
                             LoginView()
@@ -42,9 +38,6 @@ struct HomeView: View {
                         }
                         
                     }
-                    
-                }
-                
             }
         }
     }

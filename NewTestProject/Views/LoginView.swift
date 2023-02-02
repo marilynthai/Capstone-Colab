@@ -10,7 +10,7 @@ import Firebase
 
 struct LoginView: View {
     @EnvironmentObject var dataManager:DataManager
-    @StateObject var loginManager = LoginManager()
+    @EnvironmentObject var loginManager:LoginManager
 
 
     @State private var email = ""
@@ -63,9 +63,6 @@ struct LoginView: View {
                     .background(Color.white)
                     .cornerRadius(10)
                     
-                    NavigationLink(destination: CreateAUserView()) {
-                        Text("Don't have an account? Sign up here")
-                    }
                     
                 }
         
