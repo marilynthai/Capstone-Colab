@@ -57,6 +57,7 @@ struct CreatePostView: View {
                         Text(loginManager.userEmail)
                             .padding()
                             .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
                             .cornerRadius(10)
                     }
                     VStack(alignment: .leading) {
