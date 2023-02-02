@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 
+
 struct CreatePostView: View {
     @EnvironmentObject var dataManager:DataManager
     @EnvironmentObject var loginManager:LoginManager
@@ -32,7 +33,7 @@ struct CreatePostView: View {
                     .frame(width:200, height:40)
                     .background(Color.white)
                     .cornerRadius(10)
-                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+
                     
                     VStack(alignment: .leading) {
                         Text("Name")
@@ -41,15 +42,21 @@ struct CreatePostView: View {
                             .frame(width:300, height:50)
                             .background(Color.white.opacity(0.75))
                             .cornerRadius(10)
+                            .disableAutocorrection(true)
                     }
                     
                     VStack(alignment: .leading) {
                         Text("Description")
-                        TextField("Description",text: $newPostDescription)
+                        TextField("Description",text: $newPostDescription, axis:.vertical)
+                            .lineLimit(2...6)
                             .padding()
-                            .frame(width:300, height:50)
+                            .frame(width:300)
                             .background(Color.white.opacity(0.75))
                             .cornerRadius(10)
+                            .disableAutocorrection(true)
+                    }
+                    .onAppear {
+                        UITextField.appearance().clearButtonMode = .whileEditing
                     }
                     
                     VStack(alignment: .leading) {
@@ -91,6 +98,7 @@ struct CreatePostView: View {
                     .cornerRadius(10)
                     .padding()
                     
+
                 }
                 .alert("Post Created", isPresented: $createdPost, actions: {})
                 .padding()
