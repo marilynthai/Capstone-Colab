@@ -12,6 +12,7 @@ struct EditPostView: View {
     @State var editPost:Post
     @EnvironmentObject var dataManager:DataManager
     @EnvironmentObject var loginManager:LoginManager
+    @State private var categories = ["Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
     
     var body: some View {
         NavigationView {
@@ -63,14 +64,17 @@ struct EditPostView: View {
                     VStack(alignment: .leading) {
                         Text("Category")
                             .multilineTextAlignment(.leading)
-                        TextField("Category",text: $editPost.category)
-                        //should populate with original post data
-                            .padding()
-                            .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
-                            .cornerRadius(10)
-                            .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-
+                        Picker("Please choose a category", selection: $editPost.category) {
+                            ForEach(categories, id: \.self) {
+                                Text($0)
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        .foregroundColor(.black)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
                     }
 
                     

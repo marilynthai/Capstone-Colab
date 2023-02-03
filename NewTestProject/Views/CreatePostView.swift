@@ -17,6 +17,8 @@ struct CreatePostView: View {
     @State private var newPostDescription = ""
     @State private var category = ""
     @State private var createdPost = false
+    @State private var categories = ["Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
+
     
     var body: some View {
         NavigationView{
@@ -33,7 +35,7 @@ struct CreatePostView: View {
                     .frame(width:200, height:40)
                     .background(Color.white)
                     .cornerRadius(10)
-
+                    
                     
                     VStack(alignment: .leading) {
                         Text("Name")
@@ -70,43 +72,49 @@ struct CreatePostView: View {
                     VStack(alignment: .leading) {
                         Text("Category")
                             .multilineTextAlignment(.leading)
-                        TextField("Category",text: $category)
-                            .padding()
-                            .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
-                            .cornerRadius(10)
+                        Picker("Please choose a category", selection: $category) {
+                            ForEach(categories, id: \.self) {
+                                Text($0)
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        .foregroundColor(.black)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
                     }
-                    Button {
-                        dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category)
-                        newPostName = ""
-                        newPostDescription = ""
-                        category = ""
-                        dataManager.fetchPosts()
-                        dataManager.fetchUserPosts()
-                        createdPost = true
+                        
+                        Button {
+                            dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category)
+                            newPostName = ""
+                            newPostDescription = ""
+                            category = ""
+                            dataManager.fetchPosts()
+                            dataManager.fetchUserPosts()
+                            createdPost = true
+                            
+                            
+                        } label: {
+                            Text("Save Post")
+                        }
+                        
+                        .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category.isEmpty)
+                        .buttonStyle(.plain)
+                        .foregroundColor(.black)
+                        .frame(width:300, height:50)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .padding()
                         
                         
-                    } label: {
-                        Text("Save Post")
                     }
-                    
-                    .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category.isEmpty)
-                    .buttonStyle(.plain)
-                    .foregroundColor(.black)
-                    .frame(width:300, height:50)
-                    .background(Color.white)
-                    .cornerRadius(10)
+                    .alert("Post Created", isPresented: $createdPost, actions: {})
                     .padding()
-                    
-
                 }
-                .alert("Post Created", isPresented: $createdPost, actions: {})
-                .padding()
+                .navigationTitle("Create Post")
             }
-            .navigationTitle("Create Post")
         }
-    }
-    
     struct CreatePostView_Previews: PreviewProvider {
         static var previews: some View {
             CreatePostView()
