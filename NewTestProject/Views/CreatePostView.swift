@@ -78,7 +78,7 @@ struct CreatePostView: View {
                                     .foregroundColor(.black)
                             }
                         }
-                        .foregroundColor(.black)
+                        .tint(.black)
                         .padding()
                         .frame(width:300, height:50)
                         .background(Color.white.opacity(0.75))

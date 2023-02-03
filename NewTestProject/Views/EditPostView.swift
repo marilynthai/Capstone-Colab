@@ -70,11 +70,11 @@ struct EditPostView: View {
                                     .foregroundColor(.black)
                             }
                         }
-                        .foregroundColor(.black)
                         .padding()
                         .frame(width:300, height:50)
                         .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
+                        .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                     }
 
                     
