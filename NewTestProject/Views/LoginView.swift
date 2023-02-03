@@ -62,6 +62,8 @@ struct LoginView: View {
                     .frame(width:300, height:50)
                     .background(Color.white)
                     .cornerRadius(10)
+                    .disabled(email.isEmpty || password.isEmpty)
+                    .buttonStyle(.plain)
                     
                     
                 }
