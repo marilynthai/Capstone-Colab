@@ -70,7 +70,7 @@ struct TestAllPostView: View {
                         }
                     }
                 } else if search != "" {
-                    List(dataManager.posts.filter {$0.name == search || $0.description.contains(search)}, id:\.id) { post in
+                    List(dataManager.posts.filter {$0.name.localizedCaseInsensitiveContains(search) || $0.description.localizedCaseInsensitiveContains(search)}, id:\.id) { post in
                         NavigationLink {
                             TestSinglePostView(post: post)
                         } label: {
