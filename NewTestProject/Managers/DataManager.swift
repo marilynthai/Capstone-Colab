@@ -141,11 +141,11 @@ class DataManager:ObservableObject {
         }
     }
     
-    func addPost(name: String,description:String,contactEmail:String, category:String) {
+    func addPost(name: String,description:String,contactEmail:String, category:String,claimName:String,claimId:String) {
         let ref = db.collection("Posts").document()
         let docId = ref.documentID
         let authID = Auth.auth().currentUser!.uid
-        ref.setData(["id":docId,"name": name, "description" :description,"contact email":contactEmail, "category": category, "authID":authID]){error in
+        ref.setData(["id":docId,"name": name, "description" :description,"contact email":contactEmail, "category": category, "authID":authID,"claimName":claimName,"claimId":claimId]){error in
             if error != nil {
                 print("could not add post")
             }

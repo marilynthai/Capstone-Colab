@@ -16,6 +16,8 @@ struct CreatePostView: View {
     @State private var newPostName = ""
     @State private var newPostDescription = ""
     @State private var category = ""
+    @State private var claimId = ""
+    @State private var claimName = ""
     @State private var createdPost = false
     @State private var categories = ["Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
 
@@ -86,7 +88,7 @@ struct CreatePostView: View {
                     }
                         
                         Button {
-                            dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category)
+                            dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category, claimName: claimName,claimId: claimId)
                             newPostName = ""
                             newPostDescription = ""
                             category = ""
