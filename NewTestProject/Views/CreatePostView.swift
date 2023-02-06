@@ -15,7 +15,7 @@ struct CreatePostView: View {
     @EnvironmentObject var loginManager:LoginManager
     @State private var newPostName = ""
     @State private var newPostDescription = ""
-    @State private var category = ""
+    @State private var category = "Pick A Category"
     @State private var claimId = ""
     @State private var claimName = ""
     @State private var createdPost = false
@@ -55,6 +55,85 @@ struct CreatePostView: View {
                         uploadPhoto()
                     } label: {
                         Text("Upload Photo")
+                        Text("Upload Image")
+                    }
+                    .foregroundColor(.black)
+                    .frame(width:200, height:40)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    
+                    
+                    VStack(alignment: .leading) {
+                        Text("Name")
+                        TextField("Post Name",text: $newPostName)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                            .disableAutocorrection(true)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("Description")
+                        TextField("Description",text: $newPostDescription, axis:.vertical)
+                            .lineLimit(2...6)
+                            .padding()
+                            .frame(width:300)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                            .disableAutocorrection(true)
+                    }
+                    .onAppear {
+                        UITextField.appearance().clearButtonMode = .whileEditing
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("Contact Email")
+                        Text(loginManager.userEmail)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Category")
+                            .multilineTextAlignment(.leading)
+                        Picker("Please choose a category", selection: $category) {
+                            ForEach(categories, id: \.self) {
+                                Text($0)
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        .tint(.black)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(10)
+                    }
+                        
+                        Button {
+                            dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category, claimName: claimName,claimId: claimId)
+                            newPostName = ""
+                            newPostDescription = ""
+                            category = ""
+                            dataManager.fetchPosts()
+                            dataManager.fetchUserPosts()
+                            createdPost = true
+                            
+                            
+                        } label: {
+                            Text("Save Post")
+                        }
+                        
+                        .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category == "Pick A Category")
+                        .buttonStyle(.plain)
+                        .foregroundColor(.black)
+                        .frame(width:300, height:50)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .padding()
+                        
+                        
                     }
                 }
             }}.sheet(isPresented: $isPickerShowing, onDismiss: nil) {
