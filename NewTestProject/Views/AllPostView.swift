@@ -40,11 +40,12 @@ struct TestAllPostView: View {
                     }
                     .padding()
                     .frame(width:300, height:50)
-                    .background(Color.white.opacity(0.75))
+                    .background(Color("Complimentary"))
                     .cornerRadius(10)
                     .border(Color.black, width: 1)
                     .tint(.black)
                 }
+
                 
                 if category != "All" {
                     
@@ -58,10 +59,12 @@ struct TestAllPostView: View {
                                     .scaledToFit()
                                     .frame(height: 70)
                                     .cornerRadius(4)
-                                
+
                                 VStack(alignment: .leading){
                                     Text(post.name)
                                         .fontWeight(.bold)
+
+
                                     
                                     Text(post.description)
                                         .font(.subheadline)
@@ -69,6 +72,7 @@ struct TestAllPostView: View {
                             }
                         }
                     }
+
                 } else if search != "" {
                     List(dataManager.posts.filter {$0.name.localizedCaseInsensitiveContains(search) || $0.description.localizedCaseInsensitiveContains(search)}, id:\.id) { post in
                         NavigationLink {

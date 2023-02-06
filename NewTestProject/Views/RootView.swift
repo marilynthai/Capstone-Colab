@@ -26,6 +26,12 @@ struct AllPostsView: View {
     @State private var search = ""
     @State var selectedTab = 1
     
+    //change the tabview background color
+    init() {
+      UITabBar.appearance().backgroundColor = UIColor(Color("Complimentary"))
+    }
+
+    
     var handler: Binding<Int> { Binding(
         get: { self.selectedTab },
         set: {
@@ -47,30 +53,29 @@ struct AllPostsView: View {
                     TestAllPostView()
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
-                        }.tag(1)
-                        .toolbarBackground(Color.white, for: .tabBar)
+                        }
+                        .toolbarBackground(.yellow, for: .tabBar)
+                        .tag(1)
+
                     
                     ClaimsView()
                     
                         .tabItem {
                             Label("My Claims", systemImage: "heart")
                         }.tag(2)
-                        .toolbarBackground(Color.white, for: .tabBar)
                     MyPostsView()
                         .tabItem {
                             Label("My Posts", systemImage: "list.dash")
                         }.tag(3)
-                        .toolbarBackground(Color.white, for: .tabBar)
                     
                     CreatePostView()
                         .tabItem {
                             Label("Create Post", systemImage: "plus.circle.fill")
                         }.tag(4)
-                        .toolbarBackground(Color.white, for: .tabBar)
-                    
                     
                 }
-                .accentColor(.red)
+
+                .accentColor(Color("Accent"))
 
                 
                 Button {
