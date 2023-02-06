@@ -117,11 +117,5 @@ struct EditPostView: View {
     }
     
     
-//    struct EditPostView_Previews: PreviewProvider {
-//        static var previews: some View {
-//            EditPostView(editPost: Post)
-//                .environmentObject(LoginManager())
-//                .environmentObject(DataManager())
-//        }
-//    }
+
 }

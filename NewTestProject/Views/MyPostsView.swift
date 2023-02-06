@@ -45,46 +45,20 @@ struct MyPostsView: View {
                     }
                 }
                 .navigationTitle("My Posts")
-
+                
             }
             
         }
         
     }
-    //        TabView {
-    //            AllPostsView()
-    //                .tabItem(){
-    //                    Text("All posts")
-    //                }
-    //            ClaimsView()
-    //                .tabItem(){
-    //                    Text("My Claims")
-    //                }
-    //            CreatePostView()
-    //                .tabItem(){
-    //                    Text("Create A Post")
-    //
-    //                }
-    //            List(dataManager.posts, id:\.id) { post in
-    //                    Text(post.name)
-    //                }
-    //
-    //                .navigationBarItems(trailing:Button(action:{
-    //                    showAdd.toggle()
-    //                },label: {
-    //                    Image(systemName:"plus")
-    //                }))
-    //                .sheet(isPresented: $showAdd){
-    //                    CreatePostView()
+}
+
+
+struct MyPostsView_Previews: PreviewProvider {
+    static var previews: some View {
+        MyPostsView()
+            .environmentObject(DataManager())
+    }
     
 }
-    
-    
-    struct MyPostsView_Previews: PreviewProvider {
-        static var previews: some View {
-            MyPostsView()
-                .environmentObject(DataManager())
-        }
-        
-    }
 

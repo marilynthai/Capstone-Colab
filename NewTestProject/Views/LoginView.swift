@@ -25,9 +25,9 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.blue
-                    .opacity(0.25)
+                Color("Complimentary")
                     .ignoresSafeArea()
+
                 VStack {
                     Text("TBD App Name")
                         .font(.largeTitle)
@@ -37,7 +37,7 @@ struct LoginView: View {
                     TextField("Email", text: $email)
                         .padding()
                         .frame(width:300, height:50)
-                        .background(Color.white.opacity(0.75))
+                        .background(Color("Neutral"))
                         .cornerRadius(10)
                         .border(.red,width: CGFloat(wrongEmail))
                         .border(.red,width: CGFloat(wrongUsername))
@@ -48,7 +48,7 @@ struct LoginView: View {
                     SecureField("Password", text: $password)
                         .padding()
                         .frame(width:300, height:50)
-                        .background(Color.white.opacity(0.75))
+                        .background(Color("Neutral"))
                         .cornerRadius(10)
                         .border(.red,width: CGFloat(wrongPassword))
                         .textInputAutocapitalization(.never)
@@ -60,7 +60,7 @@ struct LoginView: View {
                     }
                     .foregroundColor(.black)
                     .frame(width:300, height:50)
-                    .background(Color.white)
+                    .background(Color("Accent"))
                     .cornerRadius(10)
                     .disabled(email.isEmpty || password.isEmpty)
                     .buttonStyle(.plain)
@@ -72,20 +72,7 @@ struct LoginView: View {
             .navigationBarHidden(true)
         }
     }
-    //    func authenticateUser(username: String, password: String) {
-    //        if username.lowercased() == "nina" {
-    //            wrongUsername = 0
-    //            if password.lowercased() == "abc123" {
-    //                wrongPassword = 0
-    //                showingLoginScreen = true
-    //            } else {
-    //                wrongPassword = 2
-    //            }
-    //        } else {
-    //            wrongUsername = 2
-    //            }
-    //        }
-    //    }
+
     
     func login() {
         Auth.auth().signIn(withEmail: email, password: password) {result , error in

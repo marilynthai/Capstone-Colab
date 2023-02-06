@@ -48,25 +48,30 @@ struct AllPostsView: View {
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
                         }.tag(1)
+                        .toolbarBackground(Color.white, for: .tabBar)
                     
                     ClaimsView()
                     
                         .tabItem {
                             Label("My Claims", systemImage: "heart")
                         }.tag(2)
+                        .toolbarBackground(Color.white, for: .tabBar)
                     MyPostsView()
                         .tabItem {
                             Label("My Posts", systemImage: "list.dash")
                         }.tag(3)
+                        .toolbarBackground(Color.white, for: .tabBar)
                     
                     CreatePostView()
                         .tabItem {
                             Label("Create Post", systemImage: "plus.circle.fill")
                         }.tag(4)
+                        .toolbarBackground(Color.white, for: .tabBar)
                     
                     
                 }
                 .accentColor(.red)
+
                 
                 Button {
                     loginManager.logout()
@@ -85,65 +90,6 @@ struct AllPostsView: View {
             }
         }
     }
-
-        
-//        NavigationView {
-//            VStack{
-//
-//                TextField("Search",text:$search)
-//                    .padding()
-//                    .padding()
-//                    .frame(width:300, height:50)
-//                    .background(Color.white.opacity(0.75))
-//                    .cornerRadius(10)
-//                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-//
-//                List(dataManager.posts, id:\.id) { post in
-//                    NavigationLink {
-//                        SinglePostView()
-//                    } label: {
-//                        HStack {
-//                        Image(systemName:"photo.fill")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(height: 70)
-//                            .cornerRadius(4)
-//
-//                        VStack(alignment: .leading){
-//                            Text(post.name)
-//                                .fontWeight(.bold)
-//
-//                            Text(post.description)
-//                                .font(.subheadline)
-//                        }
-//                        }
-//                    }
-//
-//                }
-//
-//                .navigationTitle("Posts")
-////                 adding a post with + button
-//                            .navigationBarItems(trailing:Button(action:{
-//                                showAdd.toggle()
-//                            },label: {
-//                                Image(systemName:"plus")
-//                            }))
-//                            .sheet(isPresented: $showAdd){
-//                                CreatePostView()
-//                            }
-//                Button {
-//                    loginManager.logout()
-//                    // how do we get back to home page
-//                } label: {
-//                    Text("Log Out")
-//                }
-//                .foregroundColor(.black)
-//                .frame(width:300, height:50)
-//                .background(Color.white)
-//                .cornerRadius(10)
-//                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-//                .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
-//            }
         }
 
 struct AllPostsView_Previews: PreviewProvider {
