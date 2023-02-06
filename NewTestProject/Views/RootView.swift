@@ -28,7 +28,7 @@ struct AllPostsView: View {
     
     //change the tabview background color
     init() {
-      UITabBar.appearance().backgroundColor = UIColor(Color("Complimentary"))
+      UITabBar.appearance().backgroundColor = UIColor(Color("Neutral"))
     }
 
     
@@ -85,8 +85,8 @@ struct AllPostsView: View {
                 }
                 .font(.system(.headline, design: .rounded))
                 .padding()
-                .foregroundColor(.white)
-                .background(Color.red)
+                .foregroundColor(.black)
+                .background(Color("Accent"))
                 .cornerRadius(10)
                 .padding()
                 

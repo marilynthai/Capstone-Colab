@@ -16,17 +16,17 @@ struct TestAllPostView: View {
     @State private var categories = ["All","Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
     @State private var category = "All"
 
-
+    @State private var icon = ""
+    
     var body: some View {
 
         NavigationView {
             VStack{
                     TextField("Search",text:$search)
-                        .padding()
-                        .frame(width:300, height:50)
-                        .cornerRadius(10)
-                        .background(Color.white.opacity(0.75))
-                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                    .padding()
+                    .frame(width:300, height:50)
+                    .background(Color("Complimentary"))
+                    .cornerRadius(10)
                    
                 
                 VStack(alignment: .leading) {
@@ -42,8 +42,6 @@ struct TestAllPostView: View {
                     .frame(width:300, height:50)
                     .background(Color("Complimentary"))
                     .cornerRadius(10)
-                    .border(Color.black, width: 1)
-                    .tint(.black)
                 }
 
                 
@@ -54,7 +52,7 @@ struct TestAllPostView: View {
                             TestSinglePostView(post: post)
                         } label: {
                             HStack {
-                                Image(systemName:"photo.fill")
+                                Image(icon)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(height: 70)
@@ -63,8 +61,6 @@ struct TestAllPostView: View {
                                 VStack(alignment: .leading){
                                     Text(post.name)
                                         .fontWeight(.bold)
-
-
                                     
                                     Text(post.description)
                                         .font(.subheadline)
