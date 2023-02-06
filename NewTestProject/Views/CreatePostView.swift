@@ -31,71 +31,71 @@ struct CreatePostView: View {
     @State var selectedImage = UIImage()
     
     var body: some View {
-        //        NavigationView{
-        //            ZStack{
-        //                Color("Neutral")
-        //                    .ignoresSafeArea()
-        //                VStack {
-        ZStack {
-            if selectedImage != nil {
-                Image(uiImage: selectedImage)
-                    .resizable()
-                    .frame(width:200, height: 200)
-            }
-            
-            VStack {
-                Button {
-                    isPickerShowing = true
-                } label: {
-                    Text("Select a Photo")
-                }
-                if selectedImage != nil {
-                    Button {
-                        // Upload the image
-                        uploadPhoto()
-                    } label: {
-                        Text("Upload Photo")
-                        Text("Upload Image")
+            ZStack{
+                Color("Neutral")
+                    .ignoresSafeArea()
+                //                VStack {
+                VStack {
+                    if selectedImage != nil {
+                        Image(uiImage: selectedImage)
+                            .resizable()
+                            .frame(width:200, height: 200)
                     }
-                    .foregroundColor(.black)
-                    .frame(width:200, height:40)
-                    .background(Color.white)
-                    .cornerRadius(10)
                     
+                    VStack {
+                        Button {
+                            isPickerShowing = true
+                        } label: {
+                            Text("Select a Photo")
+                        }
+                        .frame(width:300, height:50)
+                        .background(Color("Complimentary"))
+                        .cornerRadius(10)
+                        .padding()
+                        
+                        if selectedImage != nil {
+                            Button {
+                                // Upload the image
+                                uploadPhoto()
+                            } label: {
+                                Text("Upload Image")
+                            }
+                            .frame(width:300, height:50)
+                            .background(Color("Complimentary"))
+                            .cornerRadius(10)
+                            .padding()
+                        }
+                    }.sheet(isPresented: $isPickerShowing, onDismiss: nil) {
+                        ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                    }
                     
                     VStack(alignment: .leading) {
                         Text("Name")
                         TextField("Post Name",text: $newPostName)
                             .padding()
                             .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
+                            .background(Color("Complimentary"))
                             .cornerRadius(10)
                             .disableAutocorrection(true)
-                    }
-                    
-                    VStack(alignment: .leading) {
+                        
                         Text("Description")
                         TextField("Description",text: $newPostDescription, axis:.vertical)
                             .lineLimit(2...6)
                             .padding()
                             .frame(width:300)
-                            .background(Color.white.opacity(0.75))
+                            .background(Color("Complimentary"))
                             .cornerRadius(10)
                             .disableAutocorrection(true)
-                    }
-                    .onAppear {
-                        UITextField.appearance().clearButtonMode = .whileEditing
-                    }
-                    
-                    VStack(alignment: .leading) {
+                            .onAppear {
+                                UITextField.appearance().clearButtonMode = .whileEditing}
+                        
                         Text("Contact Email")
                         Text(loginManager.userEmail)
                             .padding()
                             .frame(width:300, height:50)
-                            .background(Color.white.opacity(0.75))
+                            .background(Color("Complimentary"))
                             .cornerRadius(10)
-                    }
-                    VStack(alignment: .leading) {
+                        
                         Text("Category")
                             .multilineTextAlignment(.leading)
                         Picker("Please choose a category", selection: $category) {
@@ -107,9 +107,8 @@ struct CreatePostView: View {
                         .tint(.black)
                         .padding()
                         .frame(width:300, height:50)
-                        .background(Color.white.opacity(0.75))
+                        .background(Color("Complimentary"))
                         .cornerRadius(10)
-                    }
                         
                         Button {
                             dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category, claimName: claimName,claimId: claimId)
@@ -129,18 +128,14 @@ struct CreatePostView: View {
                         .buttonStyle(.plain)
                         .foregroundColor(.black)
                         .frame(width:300, height:50)
-                        .background(Color.white)
+                        .background(Color("Complimentary"))
                         .cornerRadius(10)
                         .padding()
-                        
-                        
                     }
                 }
-            }}.sheet(isPresented: $isPickerShowing, onDismiss: nil) {
-                ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
-        }
+            }
     }
-        
+    
         //            Button(action: {
         //                changePostImage = true
         //                openCameraRoll = true
@@ -166,7 +161,7 @@ struct CreatePostView: View {
         //                }
         //            })
         
-        //        .sheet(isPresented: $openCameraRoll) {ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)}
+//        .sheet(isPresented: $openCameraRoll) {ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)}
     func uploadPhoto() {
         // Make sure that the selected image property isn't nil
         guard selectedImage != nil else {
@@ -196,10 +191,10 @@ struct CreatePostView: View {
                 // to do: save a reference t the file in the DB
             }
         }
-            
-            // Save a reference to the file in Firestore DB
-        }
+        
+        // Save a reference to the file in Firestore DB
     }
+}
     
     //                    .foregroundColor(.black)
     //                    .frame(width:200, height:40)
