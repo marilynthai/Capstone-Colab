@@ -15,11 +15,11 @@ struct CreatePostView: View {
     @EnvironmentObject var loginManager:LoginManager
     @State private var newPostName = ""
     @State private var newPostDescription = ""
-    @State private var category = ""
+    @State private var category = "Pick A Category"
     @State private var claimId = ""
     @State private var claimName = ""
     @State private var createdPost = false
-    @State private var categories = ["Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
+    @State private var categories = ["Pick A Category","Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
 
     
     var body: some View {
@@ -101,7 +101,7 @@ struct CreatePostView: View {
                             Text("Save Post")
                         }
                         
-                        .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category.isEmpty)
+                        .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category == "Pick A Category")
                         .buttonStyle(.plain)
                         .foregroundColor(.black)
                         .frame(width:300, height:50)

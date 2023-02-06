@@ -35,12 +35,18 @@ struct TestAllPostView: View {
                 VStack {
                     
                     HStack{
-                        Text("Filter BydsaF")
+                        Text("Filter By")
                         Picker("Filter By", selection: $filter) {
                             ForEach(filterBy, id: \.self) { filter in
                                 Text(filter.capitalized)
                             }
                         }
+                        .onTapGesture{filter = "None"
+                            claimStatus = ""
+                            category = "All"
+                        }
+
+                        
                     }
                     
                     if filter == "Claim Status" {
@@ -50,6 +56,9 @@ struct TestAllPostView: View {
                                 ForEach(isClaimed, id: \.self) { status in
                                     Text(status.capitalized)
                                 }
+                            }
+                            .onTapGesture {
+                                category = "All"
                             }
                             
                         }
@@ -61,46 +70,16 @@ struct TestAllPostView: View {
                                     Text(category.capitalized)
                                 }
                             }
+                            .onTapGesture {
+                                claimStatus = ""
+                            }
+
+                            
                             
                         }
                     }
                     
-                    //                VStack(alignment: .leading) {
-                    //                    Text("Filter By ")
-                    //                        .multilineTextAlignment(.leading)
-                    //                    Picker("Please choose a category", selection: $category) {
-                    //                        ForEach(categories, id: \.self) {
-                    //                            Text($0)
-                    //                                .foregroundColor(.black)
-                    //                        }
-                    //                    }
-                    //                    .padding()
-                    //                    .frame(width:300, height:50)
-                    //                    .background(Color("Complimentary"))
-                    //                    .cornerRadius(10)
-                    //                    .border(Color.black, width: 1)
-                    //                    .tint(.black)
-                    //                }
-                    //
-                    //                VStack(alignment: .leading) {
-                    //                    Text("Filter By Category")
-                    //                        .multilineTextAlignment(.leading)
-                    //                    Picker("Please choose a category", selection: $category) {
-                    //                        ForEach(categories, id: \.self) {
-                    //                            Text($0)
-                    //                                .foregroundColor(.black)
-                    //                        }
-                    //                    }
-                    //                    .padding()
-                    //                    .frame(width:300, height:50)
-                    //                    .background(Color("Complimentary"))
-                    //                    .cornerRadius(10)
-                    //                    .border(Color.black, width: 1)
-                    //                    .tint(.black)
-                    //                }
-                    
-                    
-                    if filter == "None" {
+                    if filter == "None" || (category == "All" && claimStatus == "") {
                         List(dataManager.posts, id:\.id) { post in
                             NavigationLink {
                                 TestSinglePostView(post: post)
@@ -145,7 +124,8 @@ struct TestAllPostView: View {
                                 }
                             }
                         }
-                    } else if claimStatus == "Claimed" {
+                    } else if claimStatus != "" {
+                        if claimStatus == "Claimed" {
                         
                         List(dataManager.posts.filter {$0.claimId != ""}, id:\.id) { post in
                             NavigationLink {
@@ -194,8 +174,11 @@ struct TestAllPostView: View {
                                             .font(.subheadline)
                                     }
                                 }
+                                
                             }
+                            
                         }
+                    }
                         
                     }
                     else if category != "All" {
