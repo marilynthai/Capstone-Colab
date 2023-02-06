@@ -26,6 +26,7 @@ struct AllPostsView: View {
     @State private var search = ""
     @State var selectedTab = 1
     
+    
     //change the tabview background color
     init() {
       UITabBar.appearance().backgroundColor = UIColor(Color("Complimentary"))
