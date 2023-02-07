@@ -19,7 +19,8 @@ struct CreatePostView: View {
     @State private var claimId = ""
     @State private var claimName = ""
     @State private var createdPost = false
-    @State private var categories = ["Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
+    @State private var categories = ["Pick A Category","Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
+    @State private var photoURL = ""
     
     
     // create state variables for camera
@@ -31,109 +32,113 @@ struct CreatePostView: View {
     @State var selectedImage = UIImage()
     
     var body: some View {
-            ZStack{
-                Color("Neutral")
-                    .ignoresSafeArea()
-                //                VStack {
-                VStack {
-                    if selectedImage != nil {
-                        Image(uiImage: selectedImage)
-                            .resizable()
-                            .frame(width:200, height: 200)
+        ZStack{
+            Color("Neutral")
+                .ignoresSafeArea()
+            //                VStack {
+            ScrollView{
+                VStack (alignment: .leading) {
+                if selectedImage != nil {
+                    Image(uiImage: selectedImage)
+                        .resizable()
+                        .frame(width:200, height: 200)
+                }
+                
+                VStack (alignment: .leading) {
+                    Button {
+                        isPickerShowing = true
+                    } label: {
+                        Text("Select a Photo")
+                    }
+                    .frame(width:300, height:50)
+                    .background(Color("Complimentary"))
+                    .cornerRadius(10)
+                    .padding()
+                    
+//                    if selectedImage != nil {
+//                        Button {
+//                            // Upload the image
+//                            uploadPhoto()
+//                        } label: {
+//                            Text("Upload Image")
+//                        }
+//                        .frame(width:300, height:50)
+//                        .background(Color("Complimentary"))
+//                        .cornerRadius(10)
+//                        .padding()
+//                    }
+                }.sheet(isPresented: $isPickerShowing, onDismiss: nil) {
+                    ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                }
+                
+                VStack(alignment: .leading) {
+                    Text("Name")
+                    TextField("Post Name",text: $newPostName)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color("Complimentary"))
+                        .cornerRadius(10)
+                        .disableAutocorrection(true)
+                    
+                    Text("Description")
+                    TextField("Description",text: $newPostDescription, axis:.vertical)
+                        .lineLimit(2...6)
+                        .padding()
+                        .frame(width:300)
+                        .background(Color("Complimentary"))
+                        .cornerRadius(10)
+                        .disableAutocorrection(true)
+                        .onAppear {
+                            UITextField.appearance().clearButtonMode = .whileEditing}
+                    
+                    Text("Contact Email")
+                    Text(loginManager.userEmail)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color("Complimentary"))
+                        .cornerRadius(10)
+                    
+                    Text("Category")
+                        .multilineTextAlignment(.leading)
+                    Picker("Please choose a category", selection: $category) {
+                        ForEach(categories, id: \.self) {
+                            Text($0)
+                                .foregroundColor(.black)
+                        }
+                    }
+                    .tint(.black)
+                    .padding()
+                    .frame(width:300, height:50)
+                    .background(Color("Complimentary"))
+                    .cornerRadius(10)
+                    
+                    Button {
+                        
+                        dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category, claimName: claimName,claimId: claimId,photoURL:uploadPhoto())
+                        newPostName = ""
+                        newPostDescription = ""
+                        category = ""
+                        dataManager.fetchPosts()
+                        dataManager.fetchUserPosts()
+                        createdPost = true
+                        
+                        
+                    } label: {
+                        Text("Save Post")
                     }
                     
-                    VStack {
-                        Button {
-                            isPickerShowing = true
-                        } label: {
-                            Text("Select a Photo")
-                        }
-                        .frame(width:300, height:50)
-                        .background(Color("Complimentary"))
-                        .cornerRadius(10)
-                        .padding()
-                        
-                        if selectedImage != nil {
-                            Button {
-                                // Upload the image
-                                uploadPhoto()
-                            } label: {
-                                Text("Upload Image")
-                            }
-                            .frame(width:300, height:50)
-                            .background(Color("Complimentary"))
-                            .cornerRadius(10)
-                            .padding()
-                        }
-                    }.sheet(isPresented: $isPickerShowing, onDismiss: nil) {
-                        ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text("Name")
-                        TextField("Post Name",text: $newPostName)
-                            .padding()
-                            .frame(width:300, height:50)
-                            .background(Color("Complimentary"))
-                            .cornerRadius(10)
-                            .disableAutocorrection(true)
-                        
-                        Text("Description")
-                        TextField("Description",text: $newPostDescription, axis:.vertical)
-                            .lineLimit(2...6)
-                            .padding()
-                            .frame(width:300)
-                            .background(Color("Complimentary"))
-                            .cornerRadius(10)
-                            .disableAutocorrection(true)
-                            .onAppear {
-                                UITextField.appearance().clearButtonMode = .whileEditing}
-                        
-                        Text("Contact Email")
-                        Text(loginManager.userEmail)
-                            .padding()
-                            .frame(width:300, height:50)
-                            .background(Color("Complimentary"))
-                            .cornerRadius(10)
-                        
-                        Text("Category")
-                            .multilineTextAlignment(.leading)
-                        Picker("Please choose a category", selection: $category) {
-                            ForEach(categories, id: \.self) {
-                                Text($0)
-                                    .foregroundColor(.black)
-                            }
-                        }
-                        .tint(.black)
-                        .padding()
-                        .frame(width:300, height:50)
-                        .background(Color("Complimentary"))
-                        .cornerRadius(10)
-                        
-                        Button {
-                            dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category, claimName: claimName,claimId: claimId)
-                            newPostName = ""
-                            newPostDescription = ""
-                            category = ""
-                            dataManager.fetchPosts()
-                            dataManager.fetchUserPosts()
-                            createdPost = true
-                            
-                            
-                        } label: {
-                            Text("Save Post")
-                        }
-                        
-                        .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category == "Pick A Category")
-                        .buttonStyle(.plain)
-                        .foregroundColor(.black)
-                        .frame(width:300, height:50)
-                        .background(Color("Complimentary"))
-                        .cornerRadius(10)
-                        .padding()
-                    }
+                    .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category == "Pick A Category")
+                    .buttonStyle(.plain)
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color("Complimentary"))
+                    .cornerRadius(10)
+                    .padding()
                 }
             }
+            }
+            
+        }
     }
     
         //            Button(action: {
@@ -162,10 +167,10 @@ struct CreatePostView: View {
         //            })
         
 //        .sheet(isPresented: $openCameraRoll) {ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)}
-    func uploadPhoto() {
+    func uploadPhoto() -> String {
         // Make sure that the selected image property isn't nil
         guard selectedImage != nil else {
-            return
+            return "No image selected"
         }
         
         // Create a storage reference
@@ -176,11 +181,12 @@ struct CreatePostView: View {
         
         // CHeck that the file is able to to convert to data
         guard imageData != nil else {
-            return
+            return "yes"
         }
         
         // Specify the file path and name
-        let fileRef = storageRef.child("images/\(UUID().uuidString).jpg")
+        let imagePath = "images/\(UUID().uuidString).jpg"
+        let fileRef = storageRef.child(imagePath)
         
         // Upload that data
         let uploadTask = fileRef.putData(imageData!, metadata: nil) { metadata, error in
@@ -189,9 +195,11 @@ struct CreatePostView: View {
             
             if error == nil && metadata != nil {
                 // to do: save a reference t the file in the DB
+                
             }
+            
         }
-        
+        return imagePath
         // Save a reference to the file in Firestore DB
     }
 }
@@ -276,7 +284,7 @@ struct CreatePostView: View {
     //                    .alert("Post Created", isPresented: $createdPost, actions: {})
     //                    .padding()
     //                }
-    //                .navigationTitle("Create Post")
+    //                New Post
     //            }
     //        }
 struct CreatePostView_Previews: PreviewProvider {

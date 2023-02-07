@@ -8,11 +8,15 @@
 import Foundation
 import SwiftUI
 import Firebase
+import FirebaseStorage
 
 struct TestSinglePostView: View {
     
     var post: Post
     @EnvironmentObject var dataManager:DataManager
+    @State private var img:UIImage?
+    
+    
     
 
     var body: some View {
@@ -23,11 +27,12 @@ struct TestSinglePostView: View {
                     .fontWeight(.bold)
                     .lineLimit(2)
                 
-                Image(systemName: "photo.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 250)
-                
+                if img != nil {
+                    Image(uiImage: img!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 250)
+                }
                 VStack(alignment: .leading){
                     
                     Text("Description")
@@ -84,13 +89,29 @@ struct TestSinglePostView: View {
                 
             }
         }
+        .onAppear(
+            perform: {getImage()}
+        )
+        
     }
-    
 //    struct SinglePostView_Previews: PreviewProvider {
 //        static var previews: some View {
 //            SinglePostView(post: Post)
 //        }
 //    }
     
-    
+    func getImage() {
+            let ref = Storage.storage().reference()
+            let fileRef = ref.child(post.photoURL)
+            fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+                if error != nil {
+                    print("Error: Image could not download!")
+                    print(error!.localizedDescription)
+                } else {
+                    img = UIImage(data: data!)
+                }
+            }
+        }
+
 }
+

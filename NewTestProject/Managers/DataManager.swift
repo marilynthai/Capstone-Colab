@@ -76,11 +76,14 @@ class DataManager:ObservableObject {
                     let authID = data["authID"] as? String ?? ""
                     let claimId = data["claimId"] as? String ?? ""
                     let claimName = data["claimName"] as? String ?? ""
-                    let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName)
+                    let photoURL = data["photoURL"] as? String ?? ""
+                    let photo = data["photo"] as? UIImage
+                    let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName,photoURL: photoURL)
                     self.posts.append(post)
                 }
             }
         }
+        
     }
     
     func fetchUserPosts(){
@@ -104,7 +107,8 @@ class DataManager:ObservableObject {
                         let authID = data["authID"] as? String ?? ""
                         let claimId = data["claimId"] as? String ?? ""
                         let claimName = data["claimName"] as? String ?? ""
-                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName)
+                        let photoURL = data["photoURL"] as? String ?? ""
+                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName,photoURL: photoURL)
                         self.userPosts.append(post)
                     }
                 }
@@ -133,7 +137,8 @@ class DataManager:ObservableObject {
                         let authID = data["authID"] as? String ?? ""
                         let claimId = data["claimId"] as? String ?? ""
                         let claimName = data["claimName"] as? String ?? ""
-                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName)
+                        let photoURL = data["photoURL"] as? String ?? ""
+                        let post = Post(id: id, description: description, name: name, contactEmail: contactEmail, category: category, authID: authID, claimId: claimId, claimName: claimName,photoURL: photoURL)
                         self.userClaims.append(post)
                     }
                 }
@@ -141,11 +146,11 @@ class DataManager:ObservableObject {
         }
     }
     
-    func addPost(name: String,description:String,contactEmail:String, category:String,claimName:String,claimId:String) {
+    func addPost(name: String,description:String,contactEmail:String, category:String,claimName:String,claimId:String,photoURL:String) {
         let ref = db.collection("Posts").document()
         let docId = ref.documentID
         let authID = Auth.auth().currentUser!.uid
-        ref.setData(["id":docId,"name": name, "description" :description,"contact email":contactEmail, "category": category, "authID":authID,"claimName":claimName,"claimId":claimId]){error in
+        ref.setData(["id":docId,"name": name, "description" :description,"contact email":contactEmail, "category": category, "authID":authID,"claimName":claimName,"claimId":claimId, "photoURL":photoURL]){error in
             if error != nil {
                 print("could not add post")
             }

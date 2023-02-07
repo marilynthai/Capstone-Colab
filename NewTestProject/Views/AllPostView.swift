@@ -31,6 +31,11 @@ struct TestAllPostView: View {
                     .cornerRadius(10)
                     .background(Color.white.opacity(0.75))
                     .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                    .onTapGesture{filter = "None"
+                        claimStatus = ""
+                        category = "All"
+                        search = ""
+                    }
                 
                 VStack {
                     
@@ -44,6 +49,7 @@ struct TestAllPostView: View {
                         .onTapGesture{filter = "None"
                             claimStatus = ""
                             category = "All"
+                            search = ""
                         }
 
                         
@@ -79,7 +85,29 @@ struct TestAllPostView: View {
                         }
                     }
                     
-                    if filter == "None" || (category == "All" && claimStatus == "") {
+                   if search != "" {
+                        List(dataManager.posts.filter {$0.name.localizedCaseInsensitiveContains(search) || $0.description.localizedCaseInsensitiveContains(search)}, id:\.id) { post in
+                            NavigationLink {
+                                TestSinglePostView(post: post)
+                            } label: {
+                                HStack {
+                                    Image(systemName:"photo.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 70)
+                                        .cornerRadius(4)
+                                    
+                                    VStack(alignment: .leading){
+                                        Text(post.name)
+                                            .fontWeight(.bold)
+                                        
+                                        Text(post.description)
+                                            .font(.subheadline)
+                                    }
+                                }
+                            }
+                        }
+                    } else if filter == "None" || (category == "All" && claimStatus == "") {
                         List(dataManager.posts, id:\.id) { post in
                             NavigationLink {
                                 TestSinglePostView(post: post)
@@ -102,29 +130,7 @@ struct TestAllPostView: View {
                             }
                         }
                         
-                    } else if search != "" {
-                        List(dataManager.posts.filter {$0.name.localizedCaseInsensitiveContains(search) || $0.description.localizedCaseInsensitiveContains(search)}, id:\.id) { post in
-                            NavigationLink {
-                                TestSinglePostView(post: post)
-                            } label: {
-                                HStack {
-                                    Image(systemName:"photo.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 70)
-                                        .cornerRadius(4)
-                                    
-                                    VStack(alignment: .leading){
-                                        Text(post.name)
-                                            .fontWeight(.bold)
-                                        
-                                        Text(post.description)
-                                            .font(.subheadline)
-                                    }
-                                }
-                            }
-                        }
-                    } else if claimStatus != "" {
+                    }else if claimStatus != "" {
                         if claimStatus == "Claimed" {
                         
                         List(dataManager.posts.filter {$0.claimId != ""}, id:\.id) { post in
@@ -237,6 +243,7 @@ struct TestAllPostView: View {
         }
         
     }
+
 }
 //struct TestAllPostView_Previews: PreviewProvider {
   //        static var previews: some View {

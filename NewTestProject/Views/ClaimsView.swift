@@ -10,6 +10,7 @@ import SwiftUI
 struct ClaimsView: View {
     @EnvironmentObject var dataManager:DataManager
     
+    
     var body: some View {
         ZStack{
             NavigationView {
@@ -40,6 +41,7 @@ struct ClaimsView: View {
             
         }
     }
+    
     
     struct ClaimsView_Previews: PreviewProvider {
         static var previews: some View {

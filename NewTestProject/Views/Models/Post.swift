@@ -16,4 +16,5 @@ struct Post: Identifiable {
     var authID: String
     var claimId:String
     var claimName:String
+    var photoURL:String
 }
