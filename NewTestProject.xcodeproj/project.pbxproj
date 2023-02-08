@@ -35,6 +35,7 @@
 		6FD2AF4929919A4C006D64C7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AF4829919A4C006D64C7 /* ImagePicker.swift */; };
 		6FD2AF4E2991A74D006D64C7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6FD2AF4D2991A74D006D64C7 /* FirebaseStorage */; };
 		6FD2AF502991AB48006D64C7 /* CopyCreateAPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AF4F2991AB48006D64C7 /* CopyCreateAPostView.swift */; };
+		6FD2AF5229943BBF006D64C7 /* MyUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AF5129943BBF006D64C7 /* MyUserView.swift */; };
 		6FFDD3A82988B47A00EE90AB /* AllPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFDD3A72988B47A00EE90AB /* AllPostView.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		30BD34192989BFD5000C4C98 /* SinglePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePostView.swift; sourceTree = "<group>"; };
 		6FD2AF4829919A4C006D64C7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6FD2AF4F2991AB48006D64C7 /* CopyCreateAPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyCreateAPostView.swift; sourceTree = "<group>"; };
+		6FD2AF5129943BBF006D64C7 /* MyUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserView.swift; sourceTree = "<group>"; };
 		6FFDD3A72988B47A00EE90AB /* AllPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,6 +206,7 @@
 				309A77822981BF8C00B0145F /* MyPostsView.swift */,
 				309A778B2981C12C00B0145F /* ClaimsView.swift */,
 				309A777C29819F0200B0145F /* CreatePostView.swift */,
+				6FD2AF5129943BBF006D64C7 /* MyUserView.swift */,
 				6FD2AF4F2991AB48006D64C7 /* CopyCreateAPostView.swift */,
 				6FD2AF4829919A4C006D64C7 /* ImagePicker.swift */,
 				309A77882981C0A300B0145F /* EditPostView.swift */,
@@ -372,6 +375,7 @@
 				309A77832981BF8C00B0145F /* MyPostsView.swift in Sources */,
 				3097105F2988520A00897010 /* LoginManager.swift in Sources */,
 				309A777B2980B5C600B0145F /* DataManager.swift in Sources */,
+				6FD2AF5229943BBF006D64C7 /* MyUserView.swift in Sources */,
 				30BD341A2989BFD5000C4C98 /* SinglePostView.swift in Sources */,
 				309A773F29809DFB00B0145F /* CreateAUserView.swift in Sources */,
 				309A777D29819F0200B0145F /* CreatePostView.swift in Sources */,

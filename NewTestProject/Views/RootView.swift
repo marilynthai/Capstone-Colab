@@ -74,22 +74,26 @@ struct AllPostsView: View {
                             Label("Create Post", systemImage: "plus.circle.fill")
                         }.tag(4)
                     
+                    MyUserView()
+                        .tabItem{
+                            Label("My Profile", systemImage: "person.circle.fill")
+                        }.tag(5)
                 }
-
-                .accentColor(Color("Accent"))
-
                 
-                Button {
-                    loginManager.logout()
-                } label: {
-                    Text("Log Out")
-                }
-                .font(.system(.headline, design: .rounded))
-                .padding()
-                .foregroundColor(.black)
-                .background(Color("Accent"))
-                .cornerRadius(10)
-                .padding()
+                .accentColor(Color("Accent"))
+                
+                
+//                Button {
+//                    loginManager.logout()
+//                } label: {
+//                    Text("Log Out")
+//                }
+//                .font(.system(.headline, design: .rounded))
+//                .padding()
+//                .foregroundColor(.black)
+//                .background(Color("Accent"))
+//                .cornerRadius(10)
+//                .padding()
                 
             } else {
                 HomeView()

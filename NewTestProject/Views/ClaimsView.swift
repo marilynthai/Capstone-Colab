@@ -34,8 +34,7 @@ struct ClaimsView: View {
                             }
                         }
                     }
-                }
-                .navigationTitle("My Claims")
+                }.navigationTitle("My Claims")
                 
             }
             
