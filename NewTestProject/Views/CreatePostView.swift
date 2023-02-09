@@ -62,7 +62,8 @@ struct CreatePostView: View {
                         Text("Select a Photo")
                     }
                     .frame(width:300, height:50)
-                    .background(Color("Complimentary"))
+                    .background(Color("Accent"))
+                    .foregroundColor(Color.black)
                     .cornerRadius(10)
                     .padding()
                     
@@ -91,7 +92,7 @@ struct CreatePostView: View {
                         
                             .padding()
                             .frame(width:300, height:50)
-                            .background(Color("Complimentary"))
+                            .background(Color.white)
                             .cornerRadius(10)
                             .disableAutocorrection(true)
                         
@@ -100,7 +101,7 @@ struct CreatePostView: View {
                             .lineLimit(2...6)
                             .padding()
                             .frame(width:300)
-                            .background(Color("Complimentary"))
+                            .background(Color.white)
                             .cornerRadius(10)
                             .disableAutocorrection(true)
                             .onAppear {
@@ -110,7 +111,7 @@ struct CreatePostView: View {
                         Text(loginManager.userEmail)
                             .padding()
                             .frame(width:300, height:50)
-                            .background(Color("Complimentary"))
+                            .background(Color.white)
                             .cornerRadius(10)
                         
                         Text("Category")
@@ -124,7 +125,7 @@ struct CreatePostView: View {
                         .tint(.black)
                         .padding()
                         .frame(width:300, height:50)
-                        .background(Color("Complimentary"))
+                        .background(Color.white)
                         .cornerRadius(10)
                     }
                         Button {
@@ -146,7 +147,7 @@ struct CreatePostView: View {
                     .buttonStyle(.plain)
                     .foregroundColor(.black)
                     .frame(width:300, height:50)
-                    .background(Color("Complimentary"))
+                    .background(Color("Accent"))
                     .cornerRadius(10)
                     .padding()
                 }

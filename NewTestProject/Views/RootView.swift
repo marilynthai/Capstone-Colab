@@ -48,6 +48,7 @@ struct AllPostsView: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
+
             if loginManager.isLoggedIn {
                 TabView(selection: handler)
                 {
@@ -55,7 +56,6 @@ struct AllPostsView: View {
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
                         }
-                        .toolbarBackground(.yellow, for: .tabBar)
                         .tag(1)
 
                     

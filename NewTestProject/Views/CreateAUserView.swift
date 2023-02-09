@@ -22,8 +22,7 @@ struct CreateAUserView: View {
     var body: some View {
         NavigationView{
             ZStack {
-                Color.blue
-                    .opacity(0.25)
+                Color("Neutral")
                     .ignoresSafeArea()
                 VStack{
         
@@ -75,9 +74,9 @@ struct CreateAUserView: View {
                             lastName=""
                             
                         }
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.black)
                         .frame(width:300, height:50)
-                        .background(Color.white)
+                        .background(Color("Accent"))
                         .cornerRadius(10)
                         
                 

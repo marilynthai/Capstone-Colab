@@ -27,7 +27,7 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color("Complimentary")
+                Color("Neutral")
                     .ignoresSafeArea()
 
                 VStack {
@@ -39,8 +39,9 @@ struct LoginView: View {
                     TextField("Email", text: $email)
                         .padding()
                         .frame(width:300, height:50)
-                        .background(Color("Neutral"))
+                        .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
+                    
                         .border(.red,width: CGFloat(wrongEmail))
                         .border(.red,width: CGFloat(wrongUsername))
                         .textInputAutocapitalization(.never)
@@ -50,7 +51,7 @@ struct LoginView: View {
                     SecureField("Password", text: $password)
                         .padding()
                         .frame(width:300, height:50)
-                        .background(Color("Neutral"))
+                        .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
                         .border(.red,width: CGFloat(wrongPassword))
                         .textInputAutocapitalization(.never)

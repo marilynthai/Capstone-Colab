@@ -107,6 +107,8 @@ struct TestAllPostView: View {
                                 }
                             }
                         }
+                        .listRowBackground(Color("Neutral"))
+                        .scrollContentBackground(.hidden)
                     } else if filter == "None" || (category == "All" && claimStatus == "") {
                         List(dataManager.posts, id:\.id) { post in
                             NavigationLink {
@@ -129,6 +131,8 @@ struct TestAllPostView: View {
                                 }
                             }
                         }
+                        .listRowBackground(Color("Neutral"))
+                        .scrollContentBackground(.hidden)
                         
                     }else if claimStatus != "" {
                         if claimStatus == "Claimed" {
@@ -156,6 +160,8 @@ struct TestAllPostView: View {
                                 }
                             }
                         }
+                        .listRowBackground(Color("Neutral"))
+                        .scrollContentBackground(.hidden)
                         
                     } else if claimStatus == "Unclaimed" {
                         
@@ -184,6 +190,8 @@ struct TestAllPostView: View {
                             }
                             
                         }
+                        .listRowBackground(Color("Neutral"))
+                        .scrollContentBackground(.hidden)
                     }
                         
                     }
@@ -211,7 +219,8 @@ struct TestAllPostView: View {
                                     }
                                 }
                             }
-                        }
+                        }                .listRowBackground(Color("Neutral"))
+                            .scrollContentBackground(.hidden)
                         
                     }  else {
                         List(dataManager.posts, id:\.id) { post in
@@ -235,15 +244,13 @@ struct TestAllPostView: View {
                                 }
                             }
                         }
-                        
+                        .listRowBackground(Color("Neutral"))
+                        .scrollContentBackground(.hidden)
                     }
-                }
-                .navigationTitle("All Posts")
+                }.navigationTitle("All Posts")
             }
         }
-        
     }
-
 }
 //struct TestAllPostView_Previews: PreviewProvider {
   //        static var previews: some View {
