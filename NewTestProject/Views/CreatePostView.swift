@@ -37,16 +37,27 @@ struct CreatePostView: View {
                 .ignoresSafeArea()
             //                VStack {
             ScrollView{
-                VStack (alignment: .leading) {
-                if selectedImage != nil {
-                    Image(uiImage: selectedImage)
-                        .resizable()
-                        .frame(width:200, height: 200)
-                }
+                VStack (alignment: .center) {
+                    Text("Create A Post")
+                        .fontWeight(.bold)
+                        .font(.largeTitle)
+                        .padding()
+
+                    if changePostImage != true {
+                        Image(systemName: "photo.fill")
+                            .resizable()
+                            .frame(width: 200, height:200)
+                    } else {
+                        if selectedImage != nil {
+                            Image(uiImage: selectedImage)
+                                .resizable()
+                                .frame(width:200, height: 200)
+                        }}
                 
-                VStack (alignment: .leading) {
+                    VStack (alignment: .center) {
                     Button {
                         isPickerShowing = true
+                        changePostImage = true
                     } label: {
                         Text("Select a Photo")
                     }
@@ -70,50 +81,54 @@ struct CreatePostView: View {
                 }.sheet(isPresented: $isPickerShowing, onDismiss: nil) {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                 }
-                
-                VStack(alignment: .leading) {
-                    Text("Name")
-                    TextField("Post Name",text: $newPostName)
-                        .padding()
-                        .frame(width:300, height:50)
-                        .background(Color("Complimentary"))
-                        .cornerRadius(10)
-                        .disableAutocorrection(true)
-                    
-                    Text("Description")
-                    TextField("Description",text: $newPostDescription, axis:.vertical)
-                        .lineLimit(2...6)
-                        .padding()
-                        .frame(width:300)
-                        .background(Color("Complimentary"))
-                        .cornerRadius(10)
-                        .disableAutocorrection(true)
-                        .onAppear {
-                            UITextField.appearance().clearButtonMode = .whileEditing}
-                    
-                    Text("Contact Email")
-                    Text(loginManager.userEmail)
-                        .padding()
-                        .frame(width:300, height:50)
-                        .background(Color("Complimentary"))
-                        .cornerRadius(10)
-                    
-                    Text("Category")
-                        .multilineTextAlignment(.leading)
-                    Picker("Please choose a category", selection: $category) {
-                        ForEach(categories, id: \.self) {
-                            Text($0)
-                                .foregroundColor(.black)
-                        }
-                    }
-                    .tint(.black)
-                    .padding()
-                    .frame(width:300, height:50)
-                    .background(Color("Complimentary"))
-                    .cornerRadius(10)
-                    
-                    Button {
+                    VStack(alignment: .center){
+                    VStack(alignment: .leading) {
+                        Text("Name")
+                            .font(.headline)
                         
+                        
+                        TextField("Post Name",text: $newPostName)
+                        
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color("Complimentary"))
+                            .cornerRadius(10)
+                            .disableAutocorrection(true)
+                        
+                        Text("Description")
+                        TextField("Description",text: $newPostDescription, axis:.vertical)
+                            .lineLimit(2...6)
+                            .padding()
+                            .frame(width:300)
+                            .background(Color("Complimentary"))
+                            .cornerRadius(10)
+                            .disableAutocorrection(true)
+                            .onAppear {
+                                UITextField.appearance().clearButtonMode = .whileEditing}
+                        
+                        Text("Contact Email")
+                        Text(loginManager.userEmail)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color("Complimentary"))
+                            .cornerRadius(10)
+                        
+                        Text("Category")
+                            .multilineTextAlignment(.leading)
+                        Picker("Please choose a category", selection: $category) {
+                            ForEach(categories, id: \.self) {
+                                Text($0)
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        .tint(.black)
+                        .padding()
+                        .frame(width:300, height:50)
+                        .background(Color("Complimentary"))
+                        .cornerRadius(10)
+                    }
+                        Button {
+                            
                         dataManager.addPost(name: newPostName,description: newPostDescription,contactEmail: loginManager.userEmail,category: category, claimName: claimName,claimId: claimId,photoURL:uploadPhoto())
                         newPostName = ""
                         newPostDescription = ""

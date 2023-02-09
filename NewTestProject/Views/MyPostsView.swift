@@ -16,7 +16,15 @@ struct MyPostsView: View {
     var body: some View {
         
         ZStack{
-            NavigationView {
+            Color("Neutral")
+                .ignoresSafeArea()
+            
+            VStack(alignment: .center){
+                Text("My Posts")
+                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                    .padding()
+                
                 List(dataManager.userPosts, id:\.id) { post in
                     NavigationLink {
                         TestSinglePostView(post: post)
@@ -44,10 +52,7 @@ struct MyPostsView: View {
                         }
                     }
                 }
-                .navigationTitle("My Posts")
-                
             }
-            
         }
         
     }
