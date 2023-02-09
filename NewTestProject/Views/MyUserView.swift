@@ -10,7 +10,7 @@ import Firebase
 
 
 struct MyUserView: View {
-    
+    @EnvironmentObject var dataManager:DataManager
     @EnvironmentObject var loginManager:LoginManager
     
     
@@ -32,14 +32,14 @@ struct MyUserView: View {
                 Image(systemName: "arrow.up.heart")
                     .resizable()
                     .frame(width:75, height: 75)
-                Text("Given: ")
+                Text("Given:\(dataManager.userPosts.count) ")
                     .font(.title)
                     .padding()
                 
                 Image(systemName: "arrow.down.heart")
                     .resizable()
                     .frame(width:75, height: 75)
-                Text("Received: ")
+                Text("Received:\(dataManager.userClaims.count) ")
                     .font(.title)
                     .padding()
                 
