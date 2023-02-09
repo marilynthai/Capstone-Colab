@@ -15,6 +15,8 @@ class DataManager:ObservableObject {
     @Published var userPosts: [Post] = []
     @Published var users: [User] = []
     @Published var userClaims: [Post] = []
+    @Published var user: User = User(id: "", email: "", name: "",url: "")
+
 
     
     
@@ -24,6 +26,31 @@ class DataManager:ObservableObject {
         fetchUsers()
         fetchUserClaims()
         
+    }
+    
+    func fetchUser() {
+        print("fetchUsercalled")
+        let ref = db.collection("Users")
+        ref.getDocuments { info, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let info = info {
+                for document in info.documents {
+                    let data = document.data()
+                    let email = data["email"] as? String ?? ""
+                    if email == Auth.auth().currentUser!.email {
+                        let id = data["id"] as? String ?? ""
+                        let name = data["name"] as? String ?? ""
+                        let email  = data["email"] as? String ?? ""
+                        let profileURL  = data["profileURL"] as? String ?? ""
+                        let user = User(id: id, email: email, name: name,url:profileURL)
+                        self.user = user
+                    }
+                }
+            }
+        }
     }
     
     func fetchUsers() {
@@ -40,16 +67,17 @@ class DataManager:ObservableObject {
                     let id = data["id"] as? String ?? ""
                     let name = data["name"] as? String ?? ""
                     let email  = data["email"] as? String ?? ""
-                    let user = User(id: id, email: email, name: name)
+                    let profileURL  = data["profileURL"] as? String ?? ""
+                    let user = User(id: id, email: email, name: name,url:profileURL)
                     self.users.append(user)
                 }
             }
         }
     }
     
-    func addUser(name: String,email:String) {
+    func addUser(name: String,email:String,profileURL:String) {
         let ref = db.collection("Users").document()
-        ref.setData(["name": name, "email" :email]){error in
+        ref.setData(["name": name, "email" :email,"profileURL":profileURL]){error in
             if error != nil {
                 print(error!.localizedDescription)
             }

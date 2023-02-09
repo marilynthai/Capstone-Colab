@@ -61,6 +61,8 @@ struct LoginView: View {
                     Button("Login") {
                         loginManager.login(email: email, password: password)
                         login()
+                        dataManager.fetchUser()
+
                     }
                     .foregroundColor(.black)
                     .frame(width:300, height:50)

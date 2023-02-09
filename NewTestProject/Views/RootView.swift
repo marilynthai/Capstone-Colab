@@ -40,6 +40,7 @@ struct AllPostsView: View {
                 dataManager.fetchPosts()
                 dataManager.fetchUserPosts()
                 dataManager.fetchUserClaims()
+                dataManager.fetchUser()
 
             }
             self.selectedTab = $0

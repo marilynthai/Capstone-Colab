@@ -114,7 +114,7 @@ struct CreateAUserView: View {
                         Button("Sign Up") {
                             register()
                             
-                            dataManager.addUser(name: firstName ,email: email)
+                            dataManager.addUser(name: firstName ,email: email,profileURL:uploadPhoto())
                             createUser = true
                             email = ""
                             password = ""

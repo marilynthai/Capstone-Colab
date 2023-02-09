@@ -255,6 +255,9 @@ struct TestAllPostView: View {
                         }
                     }
                     .background(Color("Neutral"))
+                    .onAppear(perform:{dataManager
+                        .fetchUser()
+                    })
 
                 
             }
