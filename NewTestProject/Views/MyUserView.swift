@@ -32,14 +32,14 @@ struct MyUserView: View {
                 Image(systemName: "arrow.up.heart")
                     .resizable()
                     .frame(width:75, height: 75)
-                Text("Given:\(dataManager.userPosts.count) ")
+                Text("Given: \(dataManager.userPosts.count) ")
                     .font(.title)
                     .padding()
                 
                 Image(systemName: "arrow.down.heart")
                     .resizable()
                     .frame(width:75, height: 75)
-                Text("Received:\(dataManager.userClaims.count) ")
+                Text("Received: \(dataManager.userClaims.count) ")
                     .font(.title)
                     .padding()
                 
