@@ -89,7 +89,6 @@ struct CreatePostView: View {
                         
                         
                         TextField("Post Name",text: $newPostName)
-                        
                             .padding()
                             .frame(width:300, height:50)
                             .background(Color.white)

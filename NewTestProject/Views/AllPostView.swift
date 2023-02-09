@@ -24,18 +24,18 @@ struct TestAllPostView: View {
     var body: some View {
         
         NavigationView {
+
             VStack{
                 TextField("Search",text:$search)
                     .padding()
                     .frame(width:300, height:50)
                     .cornerRadius(10)
-                    .background(Color.white.opacity(0.75))
                     .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     .onTapGesture{filter = "None"
                         claimStatus = ""
                         category = "All"
                         search = ""
-                    }
+                    }.background(Color("Neutral"))
                 
                 VStack {
                     
@@ -51,9 +51,8 @@ struct TestAllPostView: View {
                             category = "All"
                             search = ""
                         }
-
-                        
                     }
+                    .background(Color("Neutral"))
                     
                     if filter == "Claim Status" {
                         HStack{
@@ -244,8 +243,7 @@ struct TestAllPostView: View {
                                 }
                             }
                         }
-                        .listRowBackground(Color("Neutral"))
-                        .scrollContentBackground(.hidden)
+                        
                     }
                 }.navigationTitle("All Posts")
             }
