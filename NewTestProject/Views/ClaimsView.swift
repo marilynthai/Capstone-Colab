@@ -12,34 +12,44 @@ struct ClaimsView: View {
     
     
     var body: some View {
+        
         ZStack{
-            NavigationView {
-                List(dataManager.userClaims, id:\.id) { post in
-                    NavigationLink {
-                        TestSinglePostView(post: post)
-                    } label: {
-                        HStack {
-                            Image(systemName:"photo.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 70)
-                                .cornerRadius(4)
-                            
-                            VStack(alignment: .leading){
-                                Text(post.name)
-                                    .fontWeight(.bold)
+            Color("Neutral")
+                .ignoresSafeArea()
+            
+            VStack (alignment: .center){
+                Text("My Claims")
+                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                    .padding()
+
+                    List(dataManager.userClaims, id:\.id) { post in
+                        NavigationLink {
+                            TestSinglePostView(post: post)
+                        } label: {
+                            HStack {
+                                Image(systemName:"photo.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 70)
+                                    .cornerRadius(4)
                                 
-                                Text(post.description)
-                                    .font(.subheadline)
+                                VStack(alignment: .leading){
+                                    Text(post.name)
+                                        .fontWeight(.bold)
+                                    
+                                    Text(post.description)
+                                        .font(.subheadline)
+                                }
                             }
                         }
                     }
-                }.navigationTitle("My Claims")
-                
+                    .listRowBackground(Color("Neutral"))
+                    .scrollContentBackground(.hidden)
             }
-            
         }
     }
+    
     
     
     struct ClaimsView_Previews: PreviewProvider {
