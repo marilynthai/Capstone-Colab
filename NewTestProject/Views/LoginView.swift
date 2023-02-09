@@ -20,6 +20,8 @@ struct LoginView: View {
     @State private var wrongUsername = 0
     @State private var showingLoginScreen = false
     @State private var id = ""
+    @State private var invalidUserData = false
+
 
     
     var body: some View {
@@ -57,6 +59,7 @@ struct LoginView: View {
                     
                     Button("Login") {
                         loginManager.login(email: email, password: password)
+                        login()
                     }
                     .foregroundColor(.black)
                     .frame(width:300, height:50)
@@ -67,6 +70,8 @@ struct LoginView: View {
                     
                     
                 }
+                .alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
+
         
             }
             .navigationBarHidden(true)
@@ -78,9 +83,11 @@ struct LoginView: View {
         Auth.auth().signIn(withEmail: email, password: password) {result , error in
             if error != nil {
                 print(error!.localizedDescription)
+                invalidUserData = true
             } else {
                 wrongPassword = 0
                 showingLoginScreen = true
+                invalidUserData = false
 //                grabUserInformation()
                 
                 
@@ -109,5 +116,6 @@ struct LoginView: View {
             
         }
     }
+
 
 
