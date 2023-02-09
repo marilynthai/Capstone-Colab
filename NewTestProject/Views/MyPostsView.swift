@@ -52,6 +52,8 @@ struct MyPostsView: View {
                         }
                     }
                 }
+                .listRowBackground(Color("Neutral"))
+                .scrollContentBackground(.hidden)
             }
         }
         
