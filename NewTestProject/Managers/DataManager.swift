@@ -245,14 +245,15 @@ class DataManager:ObservableObject {
                 }
             }
     
-    func editPost(id:String,authId:String,name:String,description:String,category:String) {
+    func editPost(id:String,authId:String,name:String,description:String,category:String,photoURL:String) {
         let ref = db.collection("Posts").document(id)
                 let currentAuthId = Auth.auth().currentUser!.uid
                 if authId == currentAuthId {
                     ref.updateData([
                         "description":description,
                         "name":name,
-                        "category": category
+                        "category": category,
+                        "photoURL":photoURL
                     ]) { err in
                         if let err = err {
                             print("Error updating document: \(err)")

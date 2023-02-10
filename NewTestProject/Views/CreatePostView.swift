@@ -136,6 +136,11 @@ struct CreatePostView: View {
                         dataManager.fetchPosts()
                         dataManager.fetchUserPosts()
                         createdPost = true
+                        selectedImage = UIImage()
+                        changePostImage = false
+                        openCameraRoll = false
+                            
+                        isPickerShowing = false
                         
                         
                     } label: {
