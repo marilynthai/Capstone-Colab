@@ -7,12 +7,28 @@
 
 import SwiftUI
 
+extension Font {
+    static func system(
+        size: CGFloat,
+        weight: UIFont.Weight,
+        width: UIFont.Width) -> Font {
+        return Font(
+            UIFont.systemFont(
+                ofSize: size,
+                weight: weight,
+                width: width)
+        )
+    }
+}
+
 struct HomeView: View {
     // create state variables for username and password
     @State private var username = ""
     @State private var password = ""
     @EnvironmentObject var loginManager:LoginManager
     @EnvironmentObject var dataManager:DataManager
+    
+
     
     var body: some View {
         NavigationView{

@@ -22,19 +22,24 @@ struct LoginView: View {
     @State private var id = ""
     @State private var invalidUserData = false
 
-
+    let radius: CGFloat = 100
     
     var body: some View {
         NavigationView {
             ZStack {
                 Color("Neutral")
                     .ignoresSafeArea()
+                
+                Circle()
+                    .fill(Color("LightBlue"))
 
                 VStack {
-                    Text("TBD App Name")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding()
+                    Text("GOTCHU")
+//                        .font(.largeTitle)
+//                        .bold()
+//                        .padding()
+                        .font(.system(size: 48, weight: .heavy, width: .expanded))
+                        .foregroundColor(.blue)
                     
                     TextField("Email", text: $email)
                         .padding()
@@ -56,8 +61,7 @@ struct LoginView: View {
                         .border(.red,width: CGFloat(wrongPassword))
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
-                    
-                    
+               
                     Button("Login") {
                         loginManager.login(email: email, password: password)
                         login()
@@ -72,12 +76,18 @@ struct LoginView: View {
                     .buttonStyle(.plain)
                     
                     
+    
+                }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
+                
+                VStack(alignment: .trailing){
+                    Image("handshake")
+                        .resizable()
+                        .frame(
+                            width: radius * 2,
+                            height: radius * 2)
                 }
-                .alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
 
-        
-            }
-            .navigationBarHidden(true)
+            }.navigationBarHidden(true)
         }
     }
 
