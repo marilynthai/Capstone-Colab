@@ -4,7 +4,12 @@
 //
 //  Created by Marilyn Thai on 1/25/23.
 // 
-
+//
+//  LoginView.swift
+//  NewTestProject
+//
+//  Created by Marilyn Thai on 1/25/23.
+//
 import SwiftUI
 import Firebase
 
@@ -29,17 +34,9 @@ struct LoginView: View {
             ZStack {
                 Color("Neutral")
                     .ignoresSafeArea()
+                
                 Circle()
                     .fill(Color("LightBlue"))
-                
-                VStack(alignment: .trailing){
-                    Image("handshake")
-                        .resizable()
-                        .frame(
-                            width: radius * 2,
-                            height: radius * 2)
-                }
-
 
                 VStack {
                     Text("GOTCHU")
@@ -60,7 +57,6 @@ struct LoginView: View {
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
                     //label to limit front end
-
                     SecureField("Password", text: $password)
                         .padding()
                         .frame(width:300, height:50)
@@ -76,23 +72,28 @@ struct LoginView: View {
                         dataManager.fetchUser()
 
                     }
+                    .foregroundColor(.black)
+                    .frame(width:300, height:50)
+                    .background(Color("Accent"))
+                    .cornerRadius(10)
+                    .disabled(email.isEmpty || password.isEmpty)
+                    .buttonStyle(.plain)
+                    
+                    
+    
+                }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
+                
+                VStack(alignment: .trailing){
                     Image("handshake")
                         .resizable()
                         .frame(
                             width: radius * 2,
                             height: radius * 2)
-     
-                }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
-                
-                
+                }
 
-            
             }.navigationBarHidden(true)
-            
         }
-
     }
-
 
     
     func login() {
