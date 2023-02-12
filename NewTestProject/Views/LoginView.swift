@@ -34,19 +34,19 @@ struct LoginView: View {
             ZStack {
                 Color("Neutral")
                     .ignoresSafeArea()
-                
                 Circle()
                     .fill(Color("LightBlue"))
-
-                VStack {
-                    Text("GOTCHU")
-//                        .font(.largeTitle)
-//                        .bold()
-//                        .padding()
-                        .font(.system(size: 48, weight: .heavy, width: .expanded))
-                        .foregroundColor(.blue)
-                        .offset(y: -10)
+                
+                VStack (alignment: .center, spacing: 70) {
+                    Spacer()
+                        .frame(height:150)
                     VStack {
+                        Text("GOTCHU")
+
+                            .font(.system(size: 48, weight: .heavy, width: .expanded))
+                            .foregroundColor(.blue)
+                            .padding()
+                        
                         TextField("Email", text: $email)
                             .padding()
                             .frame(width:300, height:50)
@@ -57,8 +57,8 @@ struct LoginView: View {
                             .border(.red,width: CGFloat(wrongUsername))
                             .textInputAutocapitalization(.never)
                             .disableAutocorrection(true)
-                        
                         //label to limit front end
+                        
                         SecureField("Password", text: $password)
                             .padding()
                             .frame(width:300, height:50)
@@ -67,7 +67,6 @@ struct LoginView: View {
                             .border(.red,width: CGFloat(wrongPassword))
                             .textInputAutocapitalization(.never)
                             .disableAutocorrection(true)
-                        
                         
                         Button("Login") {
                             loginManager.login(email: email, password: password)
@@ -81,27 +80,23 @@ struct LoginView: View {
                         .cornerRadius(10)
                         .disabled(email.isEmpty || password.isEmpty)
                         .buttonStyle(.plain)
-                        
                     }
-                    .offset(y: 70)
-
-                    
-                    
                     Image("handshake")
                         .resizable()
                         .frame(
                             width: radius * 2,
                             height: radius * 2)
-                        .offset(y: 150)
-                                .padding(.bottom, 15)
-                    
+     
                 }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
                 
-               
 
+            
             }.navigationBarHidden(true)
+            
         }
+
     }
+
 
     
     func login() {
@@ -118,7 +113,8 @@ struct LoginView: View {
             }
         }
     }
-        
+    
+
         struct LoginView_Previews: PreviewProvider {
             static var previews: some View {
                 LoginView()
@@ -126,6 +122,4 @@ struct LoginView: View {
             
         }
     }
-
-
 
