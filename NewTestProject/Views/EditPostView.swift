@@ -19,7 +19,7 @@ struct EditPostView: View {
     @State private var img:UIImage?
     @State private var photoURL = ""
     @State private var imagePath = ""
-
+    @State private var imageUploaded = true
     @State var openCameraRoll = false
     
     @State var isPickerShowing = false
@@ -154,6 +154,7 @@ struct EditPostView: View {
                         .cornerRadius(10)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                         .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
+                        .disabled(imageUploaded == false)
                         
                         Button {
                             dataManager.deletePost(id: editPost.id, authId: editPost.authID)
@@ -184,6 +185,7 @@ struct EditPostView: View {
     func uploadPhoto() -> String {
         // Make sure that the selected image property isn't nil
         guard selectedImage != nil else {
+            imageUploaded = false
             return "No image selected"
         }
         
@@ -221,6 +223,7 @@ struct EditPostView: View {
                         return
                     }
                     photoURL = "\(url)"
+                    imageUploaded = true
 
                 }
             }

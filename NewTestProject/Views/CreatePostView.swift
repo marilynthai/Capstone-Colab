@@ -150,7 +150,7 @@ struct CreatePostView: View {
                             Text("Save Post")
                         }
                         
-                        .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category == "Pick A Category")
+                        .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category == "Pick A Category" || imageUploaded == false)
                         .buttonStyle(.plain)
                         .foregroundColor(.black)
                         .frame(width:300, height:50)
