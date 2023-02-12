@@ -45,51 +45,59 @@ struct LoginView: View {
 //                        .padding()
                         .font(.system(size: 48, weight: .heavy, width: .expanded))
                         .foregroundColor(.blue)
-                    
-                    TextField("Email", text: $email)
-                        .padding()
+                        .offset(y: -10)
+                    VStack {
+                        TextField("Email", text: $email)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                        
+                            .border(.red,width: CGFloat(wrongEmail))
+                            .border(.red,width: CGFloat(wrongUsername))
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                        
+                        //label to limit front end
+                        SecureField("Password", text: $password)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                            .border(.red,width: CGFloat(wrongPassword))
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                        
+                        
+                        Button("Login") {
+                            loginManager.login(email: email, password: password)
+                            login()
+                            dataManager.fetchUser()
+                            
+                        }
+                        .foregroundColor(.black)
                         .frame(width:300, height:50)
-                        .background(Color.white.opacity(0.75))
+                        .background(Color("Accent"))
                         .cornerRadius(10)
-                    
-                        .border(.red,width: CGFloat(wrongEmail))
-                        .border(.red,width: CGFloat(wrongUsername))
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-                    //label to limit front end
-                    SecureField("Password", text: $password)
-                        .padding()
-                        .frame(width:300, height:50)
-                        .background(Color.white.opacity(0.75))
-                        .cornerRadius(10)
-                        .border(.red,width: CGFloat(wrongPassword))
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-               
-                    Button("Login") {
-                        loginManager.login(email: email, password: password)
-                        login()
-                        dataManager.fetchUser()
-
+                        .disabled(email.isEmpty || password.isEmpty)
+                        .buttonStyle(.plain)
+                        
                     }
-                    .foregroundColor(.black)
-                    .frame(width:300, height:50)
-                    .background(Color("Accent"))
-                    .cornerRadius(10)
-                    .disabled(email.isEmpty || password.isEmpty)
-                    .buttonStyle(.plain)
+                    .offset(y: 70)
+
                     
                     
-    
-                }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
-                
-                VStack(alignment: .trailing){
                     Image("handshake")
                         .resizable()
                         .frame(
                             width: radius * 2,
                             height: radius * 2)
-                }
+                        .offset(y: 150)
+                                .padding(.bottom, 15)
+                    
+                }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
+                
+               
 
             }.navigationBarHidden(true)
         }
@@ -105,26 +113,11 @@ struct LoginView: View {
                 wrongPassword = 0
                 showingLoginScreen = true
                 invalidUserData = false
-//                grabUserInformation()
                 
                 
             }
         }
     }
-    
-//    attempting to grab user id and set to a global variable
-//    func grabUserInformation() {
-//        dataManager.fetchUsers()
-//        let users = dataManager.users
-//        for user in users {
-//            if user.email != email {
-//                print("No user found with that email, cannot assign id state")
-//            } else {
-//                id = user.id
-//                print(id)
-//            }
-//        }
-//    }
         
         struct LoginView_Previews: PreviewProvider {
             static var previews: some View {
