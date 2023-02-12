@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+import SDWebImageSwiftUI
+
 
 struct TestAllPostView: View {
     @EnvironmentObject var dataManager:DataManager
@@ -99,11 +101,19 @@ struct TestAllPostView: View {
                                     TestSinglePostView(post: post)
                                 } label: {
                                     HStack {
-                                        Image(systemName:"photo.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 70)
-                                            .cornerRadius(4)
+                                        if post.photoURL != "" {
+                                            WebImage(url: URL(string: post.photoURL))
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 70)
+                                                .cornerRadius(4)
+                                        } else{
+                                            Image(systemName:"photo.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 70)
+                                                .cornerRadius(4)
+                                        }
                                         
                                         VStack(alignment: .leading){
                                             Text(post.name)
@@ -123,11 +133,19 @@ struct TestAllPostView: View {
                                     TestSinglePostView(post: post)
                                 } label: {
                                     HStack {
-                                        Image(systemName:"photo.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 70)
-                                            .cornerRadius(4)
+                                        if post.photoURL != "" {
+                                            WebImage(url: URL(string: post.photoURL))
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 70)
+                                                .cornerRadius(4)
+                                        } else{
+                                            Image(systemName:"photo.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 70)
+                                                .cornerRadius(4)
+                                        }
                                         
                                         VStack(alignment: .leading){
                                             Text(post.name)
@@ -150,11 +168,19 @@ struct TestAllPostView: View {
                                         TestSinglePostView(post: post)
                                     } label: {
                                         HStack {
-                                            Image(systemName:"photo.fill")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: 70)
-                                                .cornerRadius(4)
+                                            if post.photoURL != "" {
+                                                WebImage(url: URL(string: post.photoURL))
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: 70)
+                                                    .cornerRadius(4)
+                                            } else{
+                                                Image(systemName:"photo.fill")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: 70)
+                                                    .cornerRadius(4)
+                                            }
                                             
                                             VStack(alignment: .leading){
                                                 Text(post.name)
@@ -178,11 +204,19 @@ struct TestAllPostView: View {
                                         TestSinglePostView(post: post)
                                     } label: {
                                         HStack {
-                                            Image(systemName:"photo.fill")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: 70)
-                                                .cornerRadius(4)
+                                            if post.photoURL != "" {
+                                                WebImage(url: URL(string: post.photoURL))
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: 70)
+                                                    .cornerRadius(4)
+                                            } else{
+                                                Image(systemName:"photo.fill")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: 70)
+                                                    .cornerRadius(4)
+                                            }
                                             
                                             VStack(alignment: .leading){
                                                 Text(post.name)
@@ -210,11 +244,19 @@ struct TestAllPostView: View {
                                     TestSinglePostView(post: post)
                                 } label: {
                                     HStack {
-                                        Image(systemName:"photo.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 70)
-                                            .cornerRadius(4)
+                                        if post.photoURL != "" {
+                                            WebImage(url: URL(string: post.photoURL))
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 70)
+                                                .cornerRadius(4)
+                                        } else{
+                                            Image(systemName:"photo.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 70)
+                                                .cornerRadius(4)
+                                        }
                                         
                                         VStack(alignment: .leading){
                                             Text(post.name)
@@ -236,11 +278,19 @@ struct TestAllPostView: View {
                                     TestSinglePostView(post: post)
                                 } label: {
                                     HStack {
-                                        Image(systemName:"photo.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 70)
-                                            .cornerRadius(4)
+                                        if post.photoURL != "" {
+                                            WebImage(url: URL(string: post.photoURL))
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 70)
+                                                .cornerRadius(4)
+                                        } else{
+                                            Image(systemName:"photo.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 70)
+                                                .cornerRadius(4)
+                                        }
                                         
                                         VStack(alignment: .leading){
                                             Text(post.name)

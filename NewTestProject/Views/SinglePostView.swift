@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import Firebase
 import FirebaseStorage
+import SDWebImageSwiftUI
+
 
 struct TestSinglePostView: View {
     
@@ -31,12 +33,18 @@ struct TestSinglePostView: View {
                         .fontWeight(.bold)
                         .lineLimit(2)
                     
-                    if img != nil {
-                        Image(uiImage: img!)
+                    if post.photoURL != "" {
+                        WebImage(url: URL(string: post.photoURL))
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 250)
+                            
+                    } else{
+                        Image(systemName:"photo.fill")
+                            .resizable()
+                            .scaledToFit()
+                            
                     }
+                    
                     VStack(alignment: .leading){
                         
                         Text("Description")

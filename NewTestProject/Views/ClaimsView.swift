@@ -6,6 +6,8 @@
 // Marilyn
 
 import SwiftUI
+import SDWebImageSwiftUI
+
 
 struct ClaimsView: View {
     @EnvironmentObject var dataManager:DataManager
@@ -28,11 +30,19 @@ struct ClaimsView: View {
                             TestSinglePostView(post: post)
                         } label: {
                             HStack {
-                                Image(systemName:"photo.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 70)
-                                    .cornerRadius(4)
+                                if post.photoURL != "" {
+                                    WebImage(url: URL(string: post.photoURL))
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 70)
+                                        .cornerRadius(4)
+                                } else{
+                                    Image(systemName:"photo.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 70)
+                                        .cornerRadius(4)
+                                }
                                 
                                 VStack(alignment: .leading){
                                     Text(post.name)

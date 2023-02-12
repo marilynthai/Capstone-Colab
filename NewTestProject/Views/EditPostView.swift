@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseStorage
+import SDWebImageSwiftUI
 
 
 struct EditPostView: View {
@@ -16,8 +17,9 @@ struct EditPostView: View {
     @State private var categories = ["Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
     @State private var createdPost = false
     @State private var img:UIImage?
+    @State private var photoURL = ""
+    @State private var imagePath = ""
 
-    @State var changePostImage = false
     @State var openCameraRoll = false
     
     @State var isPickerShowing = false
@@ -35,21 +37,27 @@ struct EditPostView: View {
                             .font(.largeTitle)
                             .padding()
                         
-                        if changePostImage != true && img != nil {
-                            Image(uiImage: img!)
-                                .resizable()
-                                .frame(width:200, height: 200)
-                        } else {
-                            if selectedImage != nil {
-                                Image(uiImage: selectedImage)
+
+                            if editPost.photoURL != "" && selectedImage == UIImage() {
+                                WebImage(url: URL(string: editPost.photoURL))
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 70)
+                                    .cornerRadius(4)
+                            } else if selectedImage != UIImage() {
+                                    Image(uiImage: selectedImage)
+                                        .resizable()
+                                        .frame(width:200, height: 200)
+                                        
+                            } else {
+                                Image(systemName:"photo.fill")
                                     .resizable()
                                     .frame(width:200, height: 200)
-                            }}
+                            }
                         
                         VStack (alignment: .center) {
                             Button {
                                 isPickerShowing = true
-                                changePostImage = true
                             } label: {
                                 Text("Select a Photo")
                             }
@@ -58,20 +66,23 @@ struct EditPostView: View {
                             .foregroundColor(Color.black)
                             .cornerRadius(10)
                             .padding()
+                        
+                            if selectedImage != nil {
+                                Button {
+                                    uploadPhoto()
+                                } label: {
+                                    Text("Upload Image")
+                                }
+                                .frame(width:300, height:50)
+                                .background(Color("Accent"))
+                                .foregroundColor(Color.black)
+                                .cornerRadius(10)
+                                .padding()
+                            }
                             
                         }.sheet(isPresented: $isPickerShowing, onDismiss: nil) {
                             ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)}
                         
-                        //                    Button {
-                        //                    } label: {
-                        //                        Text("Change Image")
-                        //                    }
-                        //                    .foregroundColor(.black)
-                        //                    .frame(width:200, height:40)
-                        //                    .background(Color.white)
-                        //                    .cornerRadius(10)
-                        //                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-                        //                    .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
                         
                         VStack(alignment: .leading) {
                             Text("Name")
@@ -124,13 +135,13 @@ struct EditPostView: View {
                         
                         
                         Button {
-                            dataManager.editPost(id: editPost.id, authId: editPost.authID, name: editPost.name, description: editPost.description, category: editPost.category,photoURL:uploadPhoto())
+                            
+                            dataManager.editPost(id: editPost.id, authId: editPost.authID, name: editPost.name, description: editPost.description, category: editPost.category,photoURL:photoURL)
                             dataManager.fetchPosts()
                             dataManager.fetchUserClaims()
                             dataManager.fetchUserPosts()
                             createdPost = true
                             selectedImage = UIImage()
-                            changePostImage = false
                             openCameraRoll = false
                             isPickerShowing = false
                             
@@ -159,9 +170,7 @@ struct EditPostView: View {
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                         .buttonBorderShape(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=shape: ButtonBorderShape@*/.roundedRectangle/*@END_MENU_TOKEN@*/)
                         
-                    }.onAppear(
-                        perform: {getImage()}
-                    )
+                    }
                     .padding()
                 }
                 
@@ -170,18 +179,7 @@ struct EditPostView: View {
     }
         
         
-    func getImage() {
-            let ref = Storage.storage().reference()
-            let fileRef = ref.child(editPost.photoURL)
-            fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-                if error != nil {
-                    print("Error: Image could not download!")
-                    print(error!.localizedDescription)
-                } else {
-                    img = UIImage(data: data!)
-                }
-            }
-        }
+  
     
     func uploadPhoto() -> String {
         // Make sure that the selected image property isn't nil
@@ -201,7 +199,7 @@ struct EditPostView: View {
         }
         
         // Specify the file path and name
-        let imagePath = "images/\(UUID().uuidString).jpg"
+        imagePath = "images/\(UUID().uuidString).jpg"
         let fileRef = storageRef.child(imagePath)
         
         // Upload that data
@@ -210,13 +208,25 @@ struct EditPostView: View {
             // Check for errors
             
             if error == nil && metadata != nil {
-                // to do: save a reference t the file in the DB
-                
+                print("photo called")
+                let imageRef = storageRef.child(imagePath)
+                imageRef.downloadURL { (url, error) in
+                    guard error == nil else {
+                        print("cannot create url download")
+                        print(error?.localizedDescription)
+                        return
+                    }
+                    guard let url = url else{
+                        print("url is nil")
+                        return
+                    }
+                    photoURL = "\(url)"
+
+                }
             }
             
         }
-        return imagePath
-        // Save a reference to the file in Firestore DB
+        return "photo URL uploaded"
     }
 
 }

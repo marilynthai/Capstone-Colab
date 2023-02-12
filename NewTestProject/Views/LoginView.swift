@@ -32,6 +32,15 @@ struct LoginView: View {
                 
                 Circle()
                     .fill(Color("LightBlue"))
+                
+                VStack(alignment: .trailing){
+                    Image("handshake")
+                        .resizable()
+                        .frame(
+                            width: radius * 2,
+                            height: radius * 2)
+                }
+
 
                 VStack {
                     Text("GOTCHU")
@@ -79,13 +88,7 @@ struct LoginView: View {
     
                 }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
                 
-                VStack(alignment: .trailing){
-                    Image("handshake")
-                        .resizable()
-                        .frame(
-                            width: radius * 2,
-                            height: radius * 2)
-                }
+                
 
             }.navigationBarHidden(true)
         }

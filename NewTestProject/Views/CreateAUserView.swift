@@ -114,12 +114,6 @@ struct CreateAUserView: View {
                         Button("Sign Up") {
                             register()
                             
-                            dataManager.addUser(name: firstName ,email: email,profileURL:uploadPhoto())
-                            createUser = true
-                            email = ""
-                            password = ""
-                            firstName=""
-                            lastName=""
                             
                         }
                         .foregroundColor(Color.black)
@@ -143,6 +137,13 @@ struct CreateAUserView: View {
         Auth.auth().createUser(withEmail: email, password: password) {result , error in
             if error != nil {
                 print(error!.localizedDescription)
+            } else if error == nil {
+                dataManager.addUser(name: firstName ,email: email,profileURL:uploadPhoto())
+                createUser = true
+                email = ""
+                password = ""
+                firstName=""
+                lastName=""
             }
         }
         
