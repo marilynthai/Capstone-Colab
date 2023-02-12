@@ -29,7 +29,6 @@ struct LoginView: View {
             ZStack {
                 Color("Neutral")
                     .ignoresSafeArea()
-                
                 Circle()
                     .fill(Color("LightBlue"))
                 
@@ -77,22 +76,23 @@ struct LoginView: View {
                         dataManager.fetchUser()
 
                     }
-                    .foregroundColor(.black)
-                    .frame(width:300, height:50)
-                    .background(Color("Accent"))
-                    .cornerRadius(10)
-                    .disabled(email.isEmpty || password.isEmpty)
-                    .buttonStyle(.plain)
-                    
-                    
-    
+                    Image("handshake")
+                        .resizable()
+                        .frame(
+                            width: radius * 2,
+                            height: radius * 2)
+     
                 }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
                 
                 
 
+            
             }.navigationBarHidden(true)
+            
         }
+
     }
+
 
     
     func login() {
