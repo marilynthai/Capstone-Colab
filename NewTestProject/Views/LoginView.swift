@@ -29,67 +29,69 @@ struct LoginView: View {
             ZStack {
                 Color("Neutral")
                     .ignoresSafeArea()
-                
                 Circle()
                     .fill(Color("LightBlue"))
-
-                VStack {
-                    Text("GOTCHU")
-//                        .font(.largeTitle)
-//                        .bold()
-//                        .padding()
-                        .font(.system(size: 48, weight: .heavy, width: .expanded))
-                        .foregroundColor(.blue)
-                    
-                    TextField("Email", text: $email)
-                        .padding()
-                        .frame(width:300, height:50)
-                        .background(Color.white.opacity(0.75))
-                        .cornerRadius(10)
-                    
-                        .border(.red,width: CGFloat(wrongEmail))
-                        .border(.red,width: CGFloat(wrongUsername))
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-                    //label to limit front end
-
-                    SecureField("Password", text: $password)
-                        .padding()
-                        .frame(width:300, height:50)
-                        .background(Color.white.opacity(0.75))
-                        .cornerRadius(10)
-                        .border(.red,width: CGFloat(wrongPassword))
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-               
-                    Button("Login") {
-                        loginManager.login(email: email, password: password)
-                        login()
-                        dataManager.fetchUser()
-
-                    }
-                    .foregroundColor(.black)
-                    .frame(width:300, height:50)
-                    .background(Color("Accent"))
-                    .cornerRadius(10)
-                    .disabled(email.isEmpty || password.isEmpty)
-                    .buttonStyle(.plain)
-                    
-                    
-    
-                }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
                 
-                VStack(alignment: .trailing){
+                VStack (alignment: .center, spacing: 70) {
+                    Spacer()
+                        .frame(height:150)
+                    VStack {
+                        Text("GOTCHU")
+
+                            .font(.system(size: 48, weight: .heavy, width: .expanded))
+                            .foregroundColor(.blue)
+                            .padding()
+                        
+                        TextField("Email", text: $email)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                        
+                            .border(.red,width: CGFloat(wrongEmail))
+                            .border(.red,width: CGFloat(wrongUsername))
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                        //label to limit front end
+                        
+                        SecureField("Password", text: $password)
+                            .padding()
+                            .frame(width:300, height:50)
+                            .background(Color.white.opacity(0.75))
+                            .cornerRadius(10)
+                            .border(.red,width: CGFloat(wrongPassword))
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                        
+                        Button("Login") {
+                            loginManager.login(email: email, password: password)
+                            login()
+                            dataManager.fetchUser()
+                            
+                        }
+                        .foregroundColor(.black)
+                        .frame(width:300, height:50)
+                        .background(Color("Accent"))
+                        .cornerRadius(10)
+                        .disabled(email.isEmpty || password.isEmpty)
+                        .buttonStyle(.plain)
+                    }
                     Image("handshake")
                         .resizable()
                         .frame(
                             width: radius * 2,
                             height: radius * 2)
-                }
+     
+                }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
+                
 
+            
             }.navigationBarHidden(true)
+            
         }
+
     }
+
 
     
     func login() {
