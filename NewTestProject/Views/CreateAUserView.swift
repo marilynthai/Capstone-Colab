@@ -116,6 +116,7 @@ struct CreateAUserView: View {
                             
                             
                         }
+                        .disabled(email.isEmpty || password.isEmpty || firstName.isEmpty)
                         .foregroundColor(Color.black)
                         .frame(width:300, height:50)
                         .background(Color("Accent"))
