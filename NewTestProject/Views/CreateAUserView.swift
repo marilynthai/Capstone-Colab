@@ -36,8 +36,9 @@ struct CreateAUserView: View {
                 VStack{
                     
                     Text("Create A New User")
-                        .font(.system(size: 25, weight: .heavy, width: .expanded))
+                        .font(.system(size: 30, weight: .heavy, width: .expanded))
                         .padding()
+                        .offset(y:-20)
                     
                     
                     ZStack(alignment: .bottomTrailing){
@@ -57,7 +58,7 @@ struct CreateAUserView: View {
                                     .clipShape(Circle())
                                 
                             } else {
-                                Image(systemName:"person.circle.fill")
+                                Image(systemName:"person.crop.circle.fill.badge.plus")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(
@@ -66,19 +67,11 @@ struct CreateAUserView: View {
                                 
                             }})
                         
-                        Image(systemName:"camera.fill")
-                            .foregroundColor(.primary)
-                            .padding(8)
-                            .background(Color.gray)
-                            .clipShape(Circle())
-                            .background(
-                                Circle()
-                                    .stroke(Color.white, lineWidth: 2))
                         
                     }.sheet(isPresented: $isPickerShowing, onDismiss: nil) {
                         ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                     }
-                    
+                    .offset(y:-20)
                         TextField("First Name", text: $firstName)
                         .padding()
                         .frame(width:300, height:50)

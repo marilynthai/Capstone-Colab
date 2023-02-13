@@ -36,16 +36,28 @@ struct LoginView: View {
                     .ignoresSafeArea()
                 Circle()
                     .fill(Color("LightBlue"))
+                    .offset(y: -100)
                 
-                VStack (alignment: .center, spacing: 70) {
+                VStack (alignment: .center) {
                     Spacer()
                         .frame(height:150)
-                    VStack {
-                        Text("GOTCHU")
+                    Text("GOTCHU")
+                        .font(.system(size: 45, weight: .heavy, width: .expanded))
+                        .foregroundColor(.blue)
+                        .offset(y: 0)
+                    
+                    Image("handshake")
+                        .resizable()
+                        .offset(y: -60)
+//                        .frame(
+//                            width: radius * 2,
+//                            height: radius * 2)
 
-                            .font(.system(size: 40, weight: .heavy, width: .expanded))
-                            .foregroundColor(.blue)
-                            .padding()
+                    VStack {
+//                        Text("GOTCHU")
+//                            .font(.system(size: 40, weight: .heavy, width: .expanded))
+//                            .foregroundColor(.blue)
+//                            .padding()
                         
                         TextField("Email", text: $email)
                             .padding()
@@ -81,11 +93,8 @@ struct LoginView: View {
                         .disabled(email.isEmpty || password.isEmpty)
                         .buttonStyle(.plain)
                     }
-                    Image("handshake")
-                        .resizable()
-                        .frame(
-                            width: radius * 2,
-                            height: radius * 2)
+                    .offset(y: -60)
+
      
                 }.alert("Invalid email or password.", isPresented: $invalidUserData, actions: {})
                 
