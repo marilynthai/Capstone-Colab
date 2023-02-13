@@ -24,6 +24,8 @@ struct EditPostView: View {
     
     @State var isPickerShowing = false
     @State var selectedImage = UIImage()
+    @FocusState var isFocused: Bool
+
     
     var body: some View {
         NavigationView {
@@ -93,6 +95,8 @@ struct EditPostView: View {
                                 .background(Color.white.opacity(0.75))
                                 .cornerRadius(10)
                                 .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                                .focused($isFocused)
+
                         }
                         
                         VStack(alignment: .leading) {
@@ -104,6 +108,8 @@ struct EditPostView: View {
                                 .background(Color.white.opacity(0.75))
                                 .cornerRadius(10)
                                 .border(Color.black.opacity(0.25), width: /*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                                .focused($isFocused)
+
                         }
                         
                         VStack(alignment: .leading) {
@@ -173,6 +179,11 @@ struct EditPostView: View {
                         
                     }
                     .padding()
+                    .onTapGesture {
+                        isFocused = false
+                    }
+                }.onTapGesture {
+                    isFocused = false
                 }
                 
             }

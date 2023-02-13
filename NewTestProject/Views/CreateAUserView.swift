@@ -22,6 +22,8 @@ struct CreateAUserView: View {
     @State var openCameraRoll = false
     @State var isPickerShowing = false
     @State var selectedImage = UIImage()
+    @FocusState var isFocused: Bool
+
 
     let radius: CGFloat = 100
 
@@ -84,6 +86,7 @@ struct CreateAUserView: View {
                         .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
                             .textInputAutocapitalization(.never)
+                            .focused($isFocused)
                         
                         
                         TextField("Last Name", text: $lastName)
@@ -92,6 +95,7 @@ struct CreateAUserView: View {
                         .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
                             .textInputAutocapitalization(.never)
+                            .focused($isFocused)
                         
                         
                         TextField("Email", text: $email)
@@ -100,6 +104,7 @@ struct CreateAUserView: View {
                         .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
                             .textInputAutocapitalization(.never)
+                            .focused($isFocused)
                         
                         
                         TextField("Password", text: $password)
@@ -108,6 +113,7 @@ struct CreateAUserView: View {
                         .background(Color.white.opacity(0.75))
                         .cornerRadius(10)
                             .textInputAutocapitalization(.never)
+                            .focused($isFocused)
                         
                         
                         
@@ -125,6 +131,9 @@ struct CreateAUserView: View {
                 
                         }
                 .alert("User Created. Please login with email and password.", isPresented: $createUser, actions: {})
+                .onTapGesture {
+                    isFocused = false
+                }
 
                     }
 
