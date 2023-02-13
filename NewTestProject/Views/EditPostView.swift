@@ -185,10 +185,9 @@ struct EditPostView: View {
     func uploadPhoto() -> String {
         // Make sure that the selected image property isn't nil
         guard selectedImage != nil else {
-            imageUploaded = false
             return "No image selected"
         }
-        
+        imageUploaded = false
         // Create a storage reference
         let storageRef = Storage.storage().reference()
         
