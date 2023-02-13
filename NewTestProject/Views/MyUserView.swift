@@ -40,8 +40,7 @@ struct MyUserView: View {
                 }
                 
                 Text("My Profile")
-                    .fontWeight(.bold)
-                    .font(.largeTitle)
+                    .font(.system(size: 48, weight: .heavy, width: .expanded))
                     .padding()
                 
                 

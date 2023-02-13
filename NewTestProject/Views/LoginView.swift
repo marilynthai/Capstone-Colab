@@ -43,7 +43,7 @@ struct LoginView: View {
                     VStack {
                         Text("GOTCHU")
 
-                            .font(.system(size: 48, weight: .heavy, width: .expanded))
+                            .font(.system(size: 40, weight: .heavy, width: .expanded))
                             .foregroundColor(.blue)
                             .padding()
                         

@@ -21,8 +21,7 @@ struct ClaimsView: View {
             
             VStack (alignment: .center){
                 Text("My Claims")
-                    .fontWeight(.bold)
-                    .font(.largeTitle)
+                    .font(.system(size: 48, weight: .heavy, width: .expanded))
                     .padding()
 
                     List(dataManager.userClaims, id:\.id) { post in

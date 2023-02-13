@@ -36,8 +36,7 @@ struct CreateAUserView: View {
                 VStack{
                     
                     Text("Create A New User")
-                        .font(.largeTitle)
-                        .bold()
+                        .font(.system(size: 25, weight: .heavy, width: .expanded))
                         .padding()
                     
                     

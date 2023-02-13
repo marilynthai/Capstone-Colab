@@ -33,8 +33,7 @@ struct TestAllPostView: View {
                 
                         VStack{
                             Text("All Posts")
-                                .fontWeight(.bold)
-                                .font(.largeTitle)
+                                .font(.system(size: 48, weight: .heavy, width: .expanded))
                                 .padding()
                             
                             TextField("Search",text:$search)

@@ -22,8 +22,7 @@ struct MyPostsView: View {
             
             VStack(alignment: .center){
                 Text("My Posts")
-                    .fontWeight(.bold)
-                    .font(.largeTitle)
+                    .font(.system(size: 48, weight: .heavy, width: .expanded))
                     .padding()
                 
                 List(dataManager.userPosts, id:\.id) { post in

@@ -35,8 +35,7 @@ struct EditPostView: View {
                 ScrollView{
                     VStack {
                         Text("Edit Post")
-                            .fontWeight(.bold)
-                            .font(.largeTitle)
+                            .font(.system(size: 48, weight: .heavy, width: .expanded))
                             .padding()
                         
 
