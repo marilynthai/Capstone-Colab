@@ -22,6 +22,7 @@ struct TestAllPostView: View {
     @State private var categories = ["All","Electronics", "Home & Garden", "Clothing", "Baby & Kids","Vehicle","Toys & Games & Hobbies","Sports & Outdoors", "Misc"]
     @State private var category = "All"
     
+    @FocusState var isFocused: Bool
     
     var body: some View {
         
@@ -42,13 +43,13 @@ struct TestAllPostView: View {
                                 .background(Color.white.opacity(0.75))
                                 .cornerRadius(10)
                                 .border(Color.black, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                                .focused($isFocused)
                                 .onTapGesture{filter = "None"
                                     claimStatus = ""
                                     category = "All"
                                     search = ""
                                 }
                                 
-                        
                         HStack{
                             Text("Filter By")
                             Picker("Filter By", selection: $filter) {
@@ -309,8 +310,11 @@ struct TestAllPostView: View {
                         .fetchUser()
                     })
 
+                    }
+
                 
-            }
+            }.onTapGesture {
+                isFocused = false
             
         }
     }
