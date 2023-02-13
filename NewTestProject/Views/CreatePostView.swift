@@ -33,6 +33,8 @@ struct CreatePostView: View {
     @State var isPickerShowing = false
     @State var selectedImage = UIImage()
     
+    @FocusState var isFocused: Bool
+    
     var body: some View {
         ZStack{
             Color("Neutral")
@@ -98,6 +100,7 @@ struct CreatePostView: View {
                                 .background(Color.white)
                                 .cornerRadius(10)
                                 .disableAutocorrection(true)
+                                .focused($isFocused)
                             
                             Text("Description")
                             TextField("Description",text: $newPostDescription, axis:.vertical)
@@ -109,7 +112,9 @@ struct CreatePostView: View {
                                 .disableAutocorrection(true)
                                 .onAppear {
                                     UITextField.appearance().clearButtonMode = .whileEditing}
+                                .focused($isFocused)
                             
+
                             Text("Contact Email")
                             Text(loginManager.userEmail)
                                 .padding()
@@ -125,6 +130,7 @@ struct CreatePostView: View {
                                         .foregroundColor(.black)
                                 }
                             }
+                            .onChange(of: category) { _ in isFocused = false}
                             .tint(.black)
                             .padding()
                             .frame(width:300, height:50)
@@ -144,11 +150,12 @@ struct CreatePostView: View {
                             openCameraRoll = false
                             imageUploaded = false
                             isPickerShowing = false
-                            
+//                            isFocused = false
                             
                         } label: {
                             Text("Save Post")
                         }
+                        
                         
                         .disabled(newPostName.isEmpty || newPostDescription.isEmpty || category == "Pick A Category" || imageUploaded == false)
                         .buttonStyle(.plain)
@@ -157,8 +164,13 @@ struct CreatePostView: View {
                         .background(Color("Accent"))
                         .cornerRadius(10)
                         .padding()
+                        
                     }
+                }.onTapGesture {
+                    isFocused = false
                 }
+            }.onTapGesture {
+                isFocused = false
             }
             
         }
