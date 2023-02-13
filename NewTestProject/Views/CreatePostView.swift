@@ -43,7 +43,7 @@ struct CreatePostView: View {
             ScrollView{
                 VStack (alignment: .center) {
                     Text("Create A Post")
-                        .font(.system(size: 25, weight: .heavy, width: .expanded))
+                        .font(.system(size: 40, weight: .heavy, width: .expanded))
                         .padding()
                     
                     if selectedImage != UIImage() {
