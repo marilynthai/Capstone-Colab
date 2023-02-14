@@ -34,15 +34,13 @@ Xcode is Apple's integrated development environment (IDE) used to develop softwa
 
     1.  Download the file GoogleService-Info.plist (firebase iOS config file).
 
-    2.  Drag into project folder.
-
-    3.  Save the file to the root of the project.![](https://lh5.googleusercontent.com/4xTNsjjppf5f6kmop2JwgTO1mSXIKF6sD0o4GejfyI-R2DZZuiSVvHTwAGR8pxcobsUvknzxqKwD558uFp7iDBli56WuvlyWHve1SiCVLK0F3eZuE9UmEvr5zxw5EvWEyR-64wF5WgxYApeCrLvvvc8)
+    2.  Save the file to the root of the project.![](https://lh5.googleusercontent.com/4xTNsjjppf5f6kmop2JwgTO1mSXIKF6sD0o4GejfyI-R2DZZuiSVvHTwAGR8pxcobsUvknzxqKwD558uFp7iDBli56WuvlyWHve1SiCVLK0F3eZuE9UmEvr5zxw5EvWEyR-64wF5WgxYApeCrLvvvc8)
 
     This is how your file directory should look like with the added plist file: 
 
     ![](https://lh6.googleusercontent.com/w1hi5EMQ9So9BbmLzkg3qhaB8L9lQU2zpdua7LuzCSWVL8bOqRpFn2i7yOr0G6e4W0yfPFacCVAYbLXuEk09H9rxb4KVO1eUwYNPCW7YANrxJVUF1MM6LNxPgAScR9RK1bHA_Iku4fPRtO2F9g_vaI4)
 
-4.  Launch the app via the Simulator or a real iPhone.
+3.  Launch the app via the Simulator or a real iPhone.
 
   **Simulator:** Xcode contains a powerful developer tool called Simulator that allows you to build and run the app on a simulated or real device without needing to lay out the user interface or write code. We recommend using the Simulator if you do not have access to an iPhone. If you do have an iPhone and wish to use it, follow the instructions below.
 
