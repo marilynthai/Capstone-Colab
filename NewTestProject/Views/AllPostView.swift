@@ -30,6 +30,8 @@ struct TestAllPostView: View {
             ZStack{
                 Color("Neutral")
                     .ignoresSafeArea()
+                    .onTapGesture {
+                        isFocused = false}
                 
                         VStack{
                             Text("All Posts")
@@ -312,12 +314,11 @@ struct TestAllPostView: View {
                     }
 
                 
-            }.onTapGesture {
-                isFocused = false
+            }
             
         }
     }
-}
+
 struct TestAllPostView_Previews: PreviewProvider {
           static var previews: some View {
               TestAllPostView()
